@@ -21,6 +21,7 @@ gem 'simple_form'
 gem 'kaminari'
 gem 'ransack'
 gem 'carrierwave'
+gem 'font-awesome-sass'
 
 gem 'enumerize'
 
