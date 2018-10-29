@@ -7,6 +7,8 @@ Rails.application.routes.draw do
     resources :comments, only: %i[create update]
   end
 
+  devise_for :users
+
   if Rails.env.development?
     mount LetterOpenerWeb::Engine, at: '/letter_opener'
   end
