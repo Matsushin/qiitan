@@ -1,6 +1,29 @@
+$short-width: 85px
+$medium-width: 200px
+$long-width: 350px
+
 main
   &.main__navigation
     margin-top: 60px
 
+.fit-input
+  width: auto
+  &.long
+    width: $long-width
+    @media (max-width: $screen-sm-max)
+      width: 100%
+  &.short
+    width: $short-width
+    @media (max-width: $screen-sm-max)
+      width: 100%
+  &.medium
+    width: $medium-width
+    @media (max-width: $screen-sm-max)
+      width: 100%
+
 body
   background-color: $gray-little
+
+.form-section
+  padding: 20px
+  background: white

@@ -2,6 +2,7 @@ ja:
   activerecord:
     attributes:
       user:
+        username: "ユーザ名"
         confirmation_sent_at: "パスワード確認送信時刻"
         confirmation_token: "パスワード確認用トークン"
         confirmed_at: "パスワード確認時刻"
@@ -9,7 +10,7 @@ ja:
         current_password: "現在のパスワード"
         current_sign_in_at: "現在のログイン時刻"
         current_sign_in_ip: "現在のログインIPアドレス"
-        email: Eメール
+        email: "メールアドレス"
         encrypted_password: "暗号化パスワード"
         failed_attempts: "失敗したログイン試行回数"
         last_sign_in_at: "最終ログイン時刻"
@@ -29,20 +30,20 @@ ja:
       user: "ユーザ"
   devise:
     confirmations:
-      confirmed: "アカウントを登録しました。"
+      confirmed: "ユーザーを登録しました。"
       new:
-        resend_confirmation_instructions: "アカウント確認メール再送"
-      send_instructions: "アカウントの有効化について数分以内にメールでご連絡します。"
+        resend_confirmation_instructions: "ユーザー確認メール再送"
+      send_instructions: "ユーザーの有効化について数分以内にメールでご連絡します。"
       send_paranoid_instructions: "メールアドレスが登録済みの場合、本人確認用のメールが数分以内に送信されます。"
     failure:
       already_authenticated: "すでにログインしています。"
-      inactive: "アカウントが有効化されていません。メールに記載された手順にしたがって、アカウントを有効化してください。"
+      inactive: "ユーザーが有効化されていません。メールに記載された手順にしたがって、ユーザーを有効化してください。"
       invalid: "%{authentication_keys}またはパスワードが違います。"
-      last_attempt: "もう一回誤るとアカウントがロックされます。"
-      locked: "アカウントは凍結されています。"
+      last_attempt: "もう一回誤るとユーザーがロックされます。"
+      locked: "ユーザーは凍結されています。"
       not_found_in_database: "%{authentication_keys}またはパスワードが違います。"
       timeout: "セッションがタイムアウトしました。もう一度ログインしてください。"
-      unauthenticated: "アカウント登録もしくはログインしてください。"
+      unauthenticated: "ユーザー登録もしくはログインしてください。"
       unconfirmed: "メールアドレスの本人確認が必要です。"
     mailer:
       confirmation_instructions:
@@ -66,14 +67,14 @@ ja:
         instruction_3: "パスワードの再設定は、上のリンクから新しいパスワードを登録するまで完了しません。"
         subject: "パスワードの再設定について"
       unlock_instructions:
-        action: "アカウントのロック解除"
+        action: "ユーザーのロック解除"
         greeting: "%{recipient}様"
-        instruction: "アカウントのロックを解除するには下のリンクをクリックしてください。"
-        message: "ログイン失敗が繰り返されたため、アカウントはロックされています。"
-        subject: "アカウントの凍結解除について"
+        instruction: "ユーザーのロックを解除するには下のリンクをクリックしてください。"
+        message: "ログイン失敗が繰り返されたため、ユーザーはロックされています。"
+        subject: "ユーザーの凍結解除について"
     omniauth_callbacks:
-      failure: "%{kind} アカウントによる認証に失敗しました。理由：（%{reason}）"
-      success: "%{kind} アカウントによる認証に成功しました。"
+      failure: "%{kind} ユーザーによる認証に失敗しました。理由：（%{reason}）"
+      success: "%{kind} ユーザーによる認証に成功しました。"
     passwords:
       edit:
         change_my_password: "パスワードを変更する"
@@ -89,10 +90,10 @@ ja:
       updated: "パスワードが正しく変更されました。"
       updated_not_active: "パスワードが正しく変更されました。"
     registrations:
-      destroyed: "アカウントを削除しました。またのご利用をお待ちしております。"
+      destroyed: "ユーザーを削除しました。またのご利用をお待ちしております。"
       edit:
         are_you_sure: "本当によろしいですか?"
-        cancel_my_account: "アカウント削除"
+        cancel_my_account: "ユーザー削除"
         currently_waiting_confirmation_for_email: "%{email} の確認待ち"
         leave_blank_if_you_don_t_want_to_change_it: "空欄のままなら変更しません"
         title: "%{resource}編集"
@@ -100,13 +101,13 @@ ja:
         update: "更新"
         we_need_your_current_password_to_confirm_your_changes: "変更を反映するには現在のパスワードを入力してください"
       new:
-        sign_up: "アカウント登録"
-      signed_up: "アカウント登録が完了しました。"
-      signed_up_but_inactive: "ログインするためには、アカウントを有効化してください。"
-      signed_up_but_locked: "アカウントが凍結されているためログインできません。"
-      signed_up_but_unconfirmed: "本人確認用のメールを送信しました。メール内のリンクからアカウントを有効化させてください。"
-      update_needs_confirmation: "アカウント情報を変更しました。変更されたメールアドレスの本人確認のため、本人確認用メールより確認処理をおこなってください。"
-      updated: "アカウント情報を変更しました。"
+        sign_up: "ユーザー登録"
+      signed_up: "ユーザー登録が完了しました。"
+      signed_up_but_inactive: "ログインするためには、ユーザーを有効化してください。"
+      signed_up_but_locked: "ユーザーが凍結されているためログインできません。"
+      signed_up_but_unconfirmed: "本人確認用のメールを送信しました。メール内のリンクからユーザーを有効化させてください。"
+      update_needs_confirmation: "ユーザー情報を変更しました。変更されたメールアドレスの本人確認のため、本人確認用メールより確認処理をおこなってください。"
+      updated: "ユーザー情報を変更しました。"
     sessions:
       already_signed_out: "既にログアウト済みです。"
       new:
@@ -116,19 +117,19 @@ ja:
     shared:
       links:
         back: "戻る"
-        didn_t_receive_confirmation_instructions: "アカウント確認のメールを受け取っていませんか?"
-        didn_t_receive_unlock_instructions: "アカウントの凍結解除方法のメールを受け取っていませんか?"
+        didn_t_receive_confirmation_instructions: "ユーザー確認のメールを受け取っていませんか?"
+        didn_t_receive_unlock_instructions: "ユーザーの凍結解除方法のメールを受け取っていませんか?"
         forgot_your_password: "パスワードを忘れましたか?"
         sign_in: "ログイン"
         sign_in_with_provider: "%{provider}でログイン"
-        sign_up: "アカウント登録"
+        sign_up: "ユーザー登録"
       minimum_password_length: "（%{count}字以上）"
     unlocks:
       new:
-        resend_unlock_instructions: "アカウントの凍結解除方法を再送する"
-      send_instructions: "アカウントの凍結解除方法を数分以内にメールでご連絡します。"
-      send_paranoid_instructions: "アカウントが見つかった場合、アカウントの凍結解除方法を数分以内にメールでご連絡します。"
-      unlocked: "アカウントを凍結解除しました。"
+        resend_unlock_instructions: "ユーザーの凍結解除方法を再送する"
+      send_instructions: "ユーザーの凍結解除方法を数分以内にメールでご連絡します。"
+      send_paranoid_instructions: "ユーザーが見つかった場合、ユーザーの凍結解除方法を数分以内にメールでご連絡します。"
+      unlocked: "ユーザーを凍結解除しました。"
   errors:
     messages:
       already_confirmed: "は既に登録済みです。ログインしてください。"
