@@ -24,6 +24,8 @@ gem 'kaminari'
 gem 'ransack'
 gem 'carrierwave'
 gem 'font-awesome-sass'
+gem 'redcarpet'
+gem 'rouge'
 
 gem 'enumerize'
 

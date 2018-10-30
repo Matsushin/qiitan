@@ -1,0 +1,6 @@
+= simple_form_for article do |f|
+  .form-group
+    = f.input :title, input_html: { class: 'form-control' }
+    = f.input :body, input_html: { class: 'form-control' }
+  .form-actions
+    = f.button :submit, 'Qiitanに投稿', class: 'btn btn-primary btn', data: { disable_with: '送信中...' }
