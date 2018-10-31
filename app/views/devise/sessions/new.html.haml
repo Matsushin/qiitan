@@ -3,12 +3,8 @@
     .text-center
       %h2 Qiitan にログイン
     = simple_form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: 'form-section' }) do |f|
-      - message = flash[:alert]
-      - if message
-        .alert.alert-danger= message
       .form-group
         = f.input :email, autofocus: true, autocomplete: :email, required: false
-      .form-group
         = f.input :password, autocomplete: 'current-password'
       - if devise_mapping.rememberable?
         .form-group.form-check

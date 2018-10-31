@@ -26,8 +26,11 @@ gem 'carrierwave'
 gem 'font-awesome-sass'
 gem 'redcarpet'
 gem 'rouge'
-
 gem 'enumerize'
+
+source 'https://rails-assets.org' do
+  gem 'rails-assets-toastr'
+end
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

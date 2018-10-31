@@ -7,11 +7,8 @@
       = f.error_notification
       .form-group
         = f.input :username, autofocus: true, required: false
-      .form-group
         = f.input :email, autocomplete: :email, required: false
-      .form-group
         = f.input :password, autocomplete: 'current-password', hint: t('devise.shared.minimum_password_length', count: @minimum_password_length)
-      .form-group
         = f.input :password_confirmation, autocomplete: 'current-password'
       .form-group
         = f.submit t('.sign_up'), class: 'btn btn-primary btn-block btn-lg'
