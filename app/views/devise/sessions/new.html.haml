@@ -7,9 +7,9 @@
       - if message
         .alert.alert-danger= message
       .form-group
-        = f.input :email, autofocus: true, autocomplete: :email, input_html: { class: 'form-control' }
+        = f.input :email, autofocus: true, autocomplete: :email, required: false
       .form-group
-        = f.input :password, autocomplete: 'current-password', input_html: { class: 'form-control' }
+        = f.input :password, autocomplete: 'current-password'
       - if devise_mapping.rememberable?
         .form-group.form-check
           = f.check_box :remember_me, class: 'form-check-input'

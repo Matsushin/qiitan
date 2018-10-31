@@ -4,14 +4,15 @@
       %h2 Qiitanへようこそ
       %p 新規登録して利用を開始しましょう。
     = simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: 'form-section' }) do |f|
+      = f.error_notification
       .form-group
-        = f.input :username, autofocus: true, input_html: { class: 'form-control' }
+        = f.input :username, autofocus: true, required: false
       .form-group
-        = f.input :email, autocomplete: :email, input_html: { class: 'form-control' }
+        = f.input :email, autocomplete: :email, required: false
       .form-group
-        = f.input :password, autocomplete: 'current-password', input_html: { class: 'form-control' }, hint: t('devise.shared.minimum_password_length', count: @minimum_password_length)
+        = f.input :password, autocomplete: 'current-password', hint: t('devise.shared.minimum_password_length', count: @minimum_password_length)
       .form-group
-        = f.input :password_confirmation, autocomplete: 'current-password', input_html: { class: 'form-control' }
+        = f.input :password_confirmation, autocomplete: 'current-password'
       .form-group
         = f.submit t('.sign_up'), class: 'btn btn-primary btn-block btn-lg'
       = render 'devise/shared/links'

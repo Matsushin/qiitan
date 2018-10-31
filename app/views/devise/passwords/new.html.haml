@@ -3,9 +3,9 @@
     .text-center
       %h2= t('.forgot_your_password')
     = simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post, class: 'form-section' }) do |f|
-      = bootstrap_devise_error_messages!
+      = f.error_notification
       .form-group
-        = f.input :email, autofocus: true, autocomplete: :email, input_html: { class: 'form-control' }
+        = f.input :email, autofocus: true, autocomplete: :email, required: false
       .form-group
         = f.submit '送信', class: 'btn btn-primary btn-block btn-lg'
       = render 'devise/shared/links'

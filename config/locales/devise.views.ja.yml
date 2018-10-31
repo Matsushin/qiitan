@@ -50,7 +50,7 @@ ja:
         action: "メールアドレスの確認"
         greeting: "%{recipient}様"
         instruction: "以下のリンクをクリックし、メールアドレスの確認手続を完了させてください。"
-        subject: "メールアドレス確認メール"
+        subject: "[Qiitan]メールアドレス確認メール"
       email_changed:
         greeting: 
         message: 
@@ -65,7 +65,7 @@ ja:
         instruction: "パスワード再設定の依頼を受けたため、メールを送信しています。下のリンクからパスワードの再設定ができます。"
         instruction_2: "パスワード再設定の依頼をしていない場合、このメールを無視してください。"
         instruction_3: "パスワードの再設定は、上のリンクから新しいパスワードを登録するまで完了しません。"
-        subject: "パスワードの再設定について"
+        subject: "[Qiitan]パスワードの再設定について"
       unlock_instructions:
         action: "ユーザーのロック解除"
         greeting: "%{recipient}様"
@@ -78,7 +78,7 @@ ja:
     passwords:
       edit:
         change_my_password: "パスワードを変更する"
-        change_your_password: "パスワードを変更"
+        change_your_password: "パスワードを変更する"
         confirm_new_password: "確認用新しいパスワード"
         new_password: "新しいパスワード"
       new:
