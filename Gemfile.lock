@@ -61,6 +61,7 @@ GEM
       activemodel (>= 4.0.0)
       activesupport (>= 4.0.0)
       mime-types (>= 1.16)
+    charlock_holmes (0.7.6)
     coderay (1.1.2)
     coffee-rails (4.2.2)
       coffee-script (>= 2.2.0)
@@ -87,12 +88,20 @@ GEM
       html2haml
     erubi (1.7.1)
     erubis (2.7.0)
+    escape_utils (1.1.1)
     execjs (2.7.0)
     ffi (1.9.25)
     font-awesome-sass (5.4.1)
       sassc (>= 1.11)
+    gemoji (3.0.0)
+    github-linguist (4.8.18)
+      charlock_holmes (~> 0.7.3)
+      escape_utils (~> 1.1.0)
+      mime-types (>= 1.19)
+      rugged (>= 0.23.0b)
     globalid (0.4.1)
       activesupport (>= 4.2.0)
+    greenmat (3.2.2.4)
     haml (5.0.4)
       temple (>= 0.8.0)
       tilt
@@ -100,6 +109,9 @@ GEM
       temple (>= 0.8.0)
       thor
       tilt
+    html-pipeline (2.8.4)
+      activesupport (>= 2)
+      nokogiri (>= 1.4)
     html2haml (2.2.0)
       erubis (~> 2.7.0)
       haml (>= 4.0, < 6)
@@ -143,6 +155,7 @@ GEM
       nokogiri (>= 1.5.9)
     mail (2.7.1)
       mini_mime (>= 0.1.1)
+    mem (0.1.5)
     method_source (0.9.0)
     mime-types (3.2.2)
       mime-types-data (~> 3.2015)
@@ -155,9 +168,22 @@ GEM
     nio4r (2.3.1)
     nokogiri (1.8.5)
       mini_portile2 (~> 2.3.0)
+    nokogumbo (2.0.0)
+      nokogiri (~> 1.8, >= 1.8.4)
     orm_adapter (0.5.0)
     public_suffix (3.0.3)
     puma (3.12.0)
+    pygments.rb (1.2.1)
+      multi_json (>= 1.0.0)
+    qiita-markdown (0.26.0)
+      addressable
+      gemoji
+      github-linguist (~> 4.0)
+      greenmat (= 3.2.2.4)
+      html-pipeline (~> 2.0)
+      mem
+      pygments.rb (~> 1.0)
+      sanitize
     rack (2.0.5)
     rack-test (1.1.0)
       rack (>= 1.0, < 3)
@@ -196,14 +222,17 @@ GEM
     rb-fsevent (0.10.3)
     rb-inotify (0.9.10)
       ffi (>= 0.5.0, < 2)
-    redcarpet (3.4.0)
     responders (2.4.0)
       actionpack (>= 4.2.0, < 5.3)
       railties (>= 4.2.0, < 5.3)
-    rouge (3.3.0)
     ruby_dep (1.5.0)
     ruby_parser (3.11.0)
       sexp_processor (~> 4.9)
+    rugged (0.27.5)
+    sanitize (5.0.0)
+      crass (~> 1.0.2)
+      nokogiri (>= 1.8.0)
+      nokogumbo (~> 2.0)
     sass (3.6.0)
       sass-listen (~> 4.0.0)
     sass-listen (4.0.0)
@@ -269,6 +298,7 @@ DEPENDENCIES
   enumerize
   erb2haml
   font-awesome-sass
+  gemoji
   hamlit
   jbuilder (~> 2.5)
   jquery-rails
@@ -277,11 +307,10 @@ DEPENDENCIES
   listen (>= 3.0.5, < 3.2)
   mysql2 (>= 0.3.18, < 0.6.0)
   puma (~> 3.7)
+  qiita-markdown
   rails (~> 5.1.6)
   rails-assets-toastr!
   ransack
-  redcarpet
-  rouge
   sass-rails (~> 5.0)
   simple_form
   spring

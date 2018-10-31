@@ -24,8 +24,8 @@ gem 'kaminari'
 gem 'ransack'
 gem 'carrierwave'
 gem 'font-awesome-sass'
-gem 'redcarpet'
-gem 'rouge'
+gem 'qiita-markdown'
+gem 'gemoji'
 gem 'enumerize'
 
 source 'https://rails-assets.org' do

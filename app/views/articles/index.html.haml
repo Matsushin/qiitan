@@ -2,4 +2,4 @@
 
 - @articles.each do |article|
   %p= article.title
-  %p= markdown(article.body)
+  %p= qiita_markdown(article.body)
