@@ -1,16 +1,20 @@
-%h1= t('.sign_in')
-= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
-  .form-group
-    = f.label :email
-    = f.email_field :email, autofocus: true, autocomplete: 'email', class: 'form-control'
-  .form-group
-    = f.label :password
-    = f.password_field :password, autocomplete: 'current-password', class: 'form-control'
-  - if devise_mapping.rememberable?
-    .form-group.form-check
-      = f.check_box :remember_me, class: 'form-check-input'
-      = f.label :remember_me, class: 'form-check-label' do
-        = resource.class.human_attribute_name('remember_me')
-  .form-group
-    = f.submit  t('.sign_in'), class: 'btn btn-primary'
-= render 'devise/shared/links'
+.row
+  .col-sm-8.col-sm-offset-2
+    .text-center
+      %h2 Qiitan にログイン
+    = simple_form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: 'form-section' }) do |f|
+      - message = flash[:alert]
+      - if message
+        .alert.alert-danger= message
+      .form-group
+        = f.input :email, autofocus: true, autocomplete: :email, input_html: { class: 'form-control' }
+      .form-group
+        = f.input :password, autocomplete: 'current-password', input_html: { class: 'form-control' }
+      - if devise_mapping.rememberable?
+        .form-group.form-check
+          = f.check_box :remember_me, class: 'form-check-input'
+          = f.label :remember_me, class: 'form-check-label' do
+            = resource.class.human_attribute_name('remember_me')
+      .form-group
+        = f.submit 'Qiitan にログイン', class: 'btn btn-primary btn-block btn-lg'
+      = render 'devise/shared/links'

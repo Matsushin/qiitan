@@ -1,9 +1,11 @@
-%h1= t('.forgot_your_password')
-= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f|
-  = bootstrap_devise_error_messages!
-  .form-group
-    = f.label :email
-    = f.email_field :email, autofocus: true, autocomplete: 'email', class: 'form-control'
-  .form-group
-    = f.submit t('.send_me_reset_password_instructions'), class: 'btn btn-primary'
-= render 'devise/shared/links'
+.row
+  .col-sm-8.col-sm-offset-2
+    .text-center
+      %h2= t('.forgot_your_password')
+    = simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post, class: 'form-section' }) do |f|
+      = bootstrap_devise_error_messages!
+      .form-group
+        = f.input :email, autofocus: true, autocomplete: :email, input_html: { class: 'form-control' }
+      .form-group
+        = f.submit '送信', class: 'btn btn-primary btn-block btn-lg'
+      = render 'devise/shared/links'
