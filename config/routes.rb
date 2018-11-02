@@ -2,6 +2,9 @@ Rails.application.routes.draw do
   root to: 'home#index'
 
   resources :articles, only: %i[index new create edit update] do
+    collection do
+      post :preview
+    end
     resources :stocks, only: %i[index create destroy]
     resources :likes, only: %i[create destroy]
     resources :comments, only: %i[create update]

@@ -14,6 +14,9 @@ class ArticlesController < ApplicationController
     if @article.save
       redirect_to articles_path, notice: t('common.flash.created')
     else
+      flash.now[:alert] = @article.errors.full_messages.join('。')
+      @article.errors.delete(:title)
+      @article.errors.delete(:body)
       render :new
     end
   end
@@ -24,6 +27,9 @@ class ArticlesController < ApplicationController
 
   def update
 
+  end
+
+  def preview
   end
 
   private
