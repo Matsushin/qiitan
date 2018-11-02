@@ -1,5 +1,6 @@
 class ArticlesController < ApplicationController
   before_action :authenticate_user!
+  before_action :set_article, only: %i[show edit update]
 
   def index
     @articles = current_user.articles.order(created_at: :desc)
@@ -21,6 +22,9 @@ class ArticlesController < ApplicationController
     end
   end
 
+  def show
+  end
+
   def edit
 
   end
@@ -33,6 +37,10 @@ class ArticlesController < ApplicationController
   end
 
   private
+
+  def set_article
+    @article = Article.find(params[:id])
+  end
 
   def article_params
     params.require(:article).permit(:title, :body)

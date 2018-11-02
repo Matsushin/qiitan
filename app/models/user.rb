@@ -6,6 +6,6 @@ class User < ApplicationRecord
 
   has_many :articles, dependent: :destroy
 
-  validates :username, presence: true
+  validates :username, presence: true, uniqueness: true, format: { with: /\A[0-9a-zA-Z@_-]{6,}\z/ }
   validates :email, presence: true
 end
