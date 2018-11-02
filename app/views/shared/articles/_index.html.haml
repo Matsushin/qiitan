@@ -1,0 +1,16 @@
+- if articles.present?
+  - articles.each do |article|
+    .media.article__item-container
+      = link_to user_path(article.user), class: 'media__image thumb thumb-m' do
+        = image_tag 'fallback/photo'
+      .article__item-body
+        .article__item-info
+          = link_to 'test', user_path(article.user)
+          が
+          = l article.created_at.to_date
+          に投稿
+        .article__item-title
+          = link_to article.title, article_path(article)
+  = paginate articles
+- else
+  %p 記事が1つもありません。
