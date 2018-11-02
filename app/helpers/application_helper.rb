@@ -3,4 +3,9 @@ module ApplicationHelper
     processor = Qiita::Markdown::Processor.new(hostname: 'qiitan.test')
     processor.call(markdown)[:output].to_s.html_safe
   end
+
+  def qiita_toc(markdown)
+    greenmat = Greenmat::Markdown.new(Qiita::Markdown::Greenmat::HTMLToCRenderer.new())
+    greenmat.render(markdown).to_s.html_safe
+  end
 end

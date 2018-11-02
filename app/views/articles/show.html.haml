@@ -1,0 +1,25 @@
+.article__item-container
+  .article__item-action-area
+  .article__item-main-area
+    .article__item-main-section
+      .article__item-main-header
+        .article__item-main-header-info
+          .article__item-main-header-author
+            = link_to user_path(@article.user) do
+              = image_tag 'fallback/photo', class: 'article__item-main-header-author-img'
+            .article__item-main-header-author-name
+              = link_to @article.user.username, user_path(@article.user)
+          .article__item-main-header-author-time
+            %span
+              %time= l(@article.updated_at.to_date, format: :date_short)
+              に更新
+          - if @article.user == current_user
+            .article__item-main-header-meta
+              .article_item-main-header-edit
+                = link_to icon('fas', 'pencil-alt', '編集する'), edit_article_path(@article)
+        %h1.article__item-main-header-title= @article.title
+      .article__item-main-body
+        = qiita_markdown(@article.body)
+  .article__item-option-area
+  .article__item-agenda-area
+    = qiita_toc(@article.body)

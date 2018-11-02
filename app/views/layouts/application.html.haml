@@ -7,7 +7,7 @@
     = csrf_meta_tags
     = stylesheet_link_tag    'application', media: 'all'
     = javascript_include_tag 'application'
-  %body{class: controller_name }
+  %body{class: "#{controller_name} #{action_name}" }
     = render 'layouts/messages'
     %header
       = render 'layouts/navigation'

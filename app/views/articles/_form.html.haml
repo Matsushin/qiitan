@@ -5,7 +5,7 @@
     .article__markdown-container
       .article__body-container
         .article__body-header
-          %p= Article.human_attribute_name :title
+          %p= Article.human_attribute_name :body
         .article__body-panel
           .article__body-form-container
             = f.input :body, input_html: { class: 'js-article-body article__body-form' },
