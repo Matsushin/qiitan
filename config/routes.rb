@@ -10,9 +10,9 @@ Rails.application.routes.draw do
     resources :comments, only: %i[create update]
   end
 
-  resources :users, only: %i[show]
-
   devise_for :users
+
+  resources :users, only: %i[show]
 
   if Rails.env.development?
     mount LetterOpenerWeb::Engine, at: '/letter_opener'

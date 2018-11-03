@@ -6,7 +6,7 @@
         .article__item-main-header-info
           .article__item-main-header-author
             = link_to user_path(@article.user) do
-              = image_tag 'fallback/photo', class: 'article__item-main-header-author-img'
+              = image_tag @article.user.profile_image.thumb.url, class: 'article__item-main-header-author-img'
             .article__item-main-header-author-name
               = link_to @article.user.username, user_path(@article.user)
           .article__item-main-header-author-time

@@ -2,10 +2,10 @@
   - articles.each do |article|
     .media.article__items-container
       = link_to user_path(article.user), class: 'media__image thumb thumb-m' do
-        = image_tag 'fallback/photo'
+        = image_tag article.user.profile_image.thumb.url
       .article__items-body
         .article__items-info
-          = link_to 'test', user_path(article.user)
+          = link_to article.user.username, user_path(article.user)
           が
           = l article.created_at.to_date
           に投稿

@@ -27,6 +27,8 @@ gem 'font-awesome-sass'
 gem 'qiita-markdown'
 gem 'gemoji'
 gem 'enumerize'
+gem 'fog'
+gem 'mini_magick'
 
 source 'https://rails-assets.org' do
   gem 'rails-assets-toastr'
@@ -45,4 +47,5 @@ group :development do
   gem 'letter_opener_web'
   gem 'better_errors'
   gem 'binding_of_caller'
+  gem 'bullet'
 end
