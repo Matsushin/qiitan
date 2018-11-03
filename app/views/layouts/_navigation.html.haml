@@ -9,6 +9,7 @@
       = link_to 'Qiitan', root_path, class: 'navbar-brand'
     - if user_signed_in?
       .nav.navbar-nav.navbar-left
+        - @q ||= Article.none.search(params[:q])
         = search_form_for @q, url: root_path, html: { class: 'form-inline navigation__search-form', method: 'get' } do |f|
           .input-group
             = f.search_field :title_or_body_cont, class: 'form-control', placeholder: 'キーワードを入力'
