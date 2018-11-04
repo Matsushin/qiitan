@@ -6,7 +6,7 @@ Rails.application.routes.draw do
       post :preview
     end
     resources :stocks, only: %i[index create destroy]
-    resources :likes, only: %i[create destroy]
+    resources :likes, only: %i[create destroy], format: :js
     resources :comments, only: %i[create update]
   end
 

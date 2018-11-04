@@ -212,6 +212,50 @@
   align-items: flex-end
   justify-content: flex-start
 
+.article__item-like-container
+  display: flex
+  align-items: center
+  justify-content: center
+  width: 50px
+  height: 50px
+  font-size: 24px
+  position: relative
+  margin-right: 24px
+  margin-bottom: 16px
+  transition: color .1s
+  &:hover
+    opacity: .8
+
+
+.article__item-like-count
+  position: absolute
+  top: -30px
+  font-size: 1.6rem
+  font-weight: 700
+  cursor: pointer
+  color: $green
+
+.article__item-like-btn
+  height: 100%
+  width: 100%
+  font-size: 20px
+  color: $green
+  background-color: white
+  border: 2px solid $green
+  border-radius: 50%
+  outline: none
+  box-shadow: 0 3px 6px rgba(0,0,0,.2)
+  &:hover, &:active, &:focus
+    color: $green
+    text-decoration: none
+  i
+    display: block
+    line-height: 44px
+    text-align: center
+  &.liked
+    background-color: $green
+    color: white
+
 .article__item-main-area
   grid-column: 2 / 3
   grid-row: 1 / 3
