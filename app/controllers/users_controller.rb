@@ -1,9 +1,18 @@
 class UsersController < ApplicationController
+  LIKED_REQUEST = 'liked'
   before_action :authenticate_user!
   before_action :set_user, only: %i[show]
 
   def show
-    @articles = @user.articles.order(created_at: :desc).page(params[:page])
+    @articles = if liked_request?
+                  Article.where(id: @user.likes.select(:article_id)).order(created_at: :desc).page(params[:page])
+                else
+                  @user.articles.order(created_at: :desc).page(params[:page])
+                end
+  end
+
+  def liked_request?
+    params[:liked] == LIKED_REQUEST
   end
 
   private

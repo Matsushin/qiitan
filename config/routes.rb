@@ -12,7 +12,11 @@ Rails.application.routes.draw do
 
   devise_for :users
 
-  resources :users, only: %i[show]
+  resources :users, only: %i[show] do
+    member do
+      get '(:liked)', to: 'users#show', as: :show
+    end
+  end
 
   if Rails.env.development?
     mount LetterOpenerWeb::Engine, at: '/letter_opener'
