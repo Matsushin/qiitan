@@ -283,21 +283,28 @@
   width: 100%
   font-size: 20px
   color: white
-  background-color: $gray
-  border: 2px solid $gray
+  background-color: $gray-dark
+  border: 2px solid $gray-dark
   border-radius: 50%
   outline: none
   box-shadow: 0 3px 6px rgba(0,0,0,.2)
   &:hover, &:active, &:focus
     color: white
     text-decoration: none
+  .fa-stack-1x
+    left: 4px
   i
     display: block
     line-height: 44px
     text-align: center
   &.stocked
-    background-color: $green
+    background-color: $gray-dark
     color: white
+
+.article__item-stock-check
+  font-size: 12px
+  color: $green
+  top: 2px
 
 .article__item-main-area
   grid-column: 2 / 3

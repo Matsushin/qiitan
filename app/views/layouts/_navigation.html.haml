@@ -16,7 +16,6 @@
             %span.input-group-addon.fit-input
               = icon('fas', 'search')
       .collapse.navbar-collapse
-        = link_to icon('fas', 'folder-open', 'ストック一覧'), stocks_path
         %ul.nav.navbar-nav.navbar-right
           %li.dropdown
             = link_to '#', class: 'dropdown-toggle navigation__dropdown-toggle', role: 'button', data: { toggle: 'dropdown' } do
@@ -30,4 +29,5 @@
                   = icon('fas', 'sign-out-alt', 'ログアウト')
         .nav.navbar-nav.navbar-right
           = link_to icon('fas', 'pencil-alt', '投稿する'), new_article_path, class: 'btn btn-primary btn-sm navigation__new-article-btn'
-
+        .nav.navbar-nav.navbar-right
+          = link_to icon('fas', 'folder-open', 'ストック一覧'), stocks_path, class: 'navigation__stocks-link'

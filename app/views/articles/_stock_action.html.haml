@@ -1,8 +1,9 @@
 .article__item-stock-container#js-stock-action
   - if stock&.persisted?
     = link_to article_stock_path(article, stock), method: :delete, remote: true, class: 'article__item-stock-btn stocked' do
-      = icon('fas', 'folder')
-      = icon('fas', 'check')
+      .fa-stack
+        = icon('fas', 'folder', class: 'fa-stack-1x')
+        = icon('fas', 'check', class: 'fa-stack-1x article__item-stock-check')
   - else
     = link_to article_stocks_path(article), method: :post, remote: true, class: 'article__item-stock-btn' do
       = icon('fas', 'folder-open')
