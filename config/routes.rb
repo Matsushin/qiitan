@@ -5,7 +5,7 @@ Rails.application.routes.draw do
     collection do
       post :preview
     end
-    resources :stocks, only: %i[index create destroy]
+    resources :stocks, only: %i[create destroy], format: :js
     resources :likes, only: %i[create destroy], format: :js
     resources :comments, only: %i[create update]
   end
@@ -17,6 +17,8 @@ Rails.application.routes.draw do
       get '(:liked)', to: 'users#show', as: :show
     end
   end
+
+  resources :stocks, only: %i[index]
 
   if Rails.env.development?
     mount LetterOpenerWeb::Engine, at: '/letter_opener'

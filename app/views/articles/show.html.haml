@@ -1,8 +1,7 @@
 .article__item-container
   .article__item-action-area
     = render 'like_action', article: @article, like: current_user.likes.find_by(article: @article)
-    .article__item-stock-container
-
+    = render 'stock_action', article: @article, stock: current_user.stocks.find_by(article: @article)
   .article__item-main-area
     .article__item-main-section
       .article__item-main-header

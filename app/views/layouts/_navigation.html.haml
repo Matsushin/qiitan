@@ -16,6 +16,7 @@
             %span.input-group-addon.fit-input
               = icon('fas', 'search')
       .collapse.navbar-collapse
+        = link_to icon('fas', 'folder-open', 'ストック一覧'), stocks_path
         %ul.nav.navbar-nav.navbar-right
           %li.dropdown
             = link_to '#', class: 'dropdown-toggle navigation__dropdown-toggle', role: 'button', data: { toggle: 'dropdown' } do

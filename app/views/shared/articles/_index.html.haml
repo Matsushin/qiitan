@@ -13,7 +13,7 @@
           = link_to article.title, article_path(article)
       .article__items-status
         - if article.likes.exists?
-          = icon 'fas', 'thumbs-up', article.likes.count
+          = icon 'fas', 'thumbs-up', article.likes.count, class: "#{current_user.likes.exists?(article: article) ? 'artilce__items-status-liked' : ''}"
   = paginate articles
 - else
   %p 記事が1つもありません。
