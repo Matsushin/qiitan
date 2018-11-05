@@ -1,16 +1,16 @@
-.row
+.row.user-row
   .col-md-3.col-sm-3.col-xs-12
     .user__profile-image
       = image_tag @user.profile_image.thumb.url
     %h3= @user.username
   .col-md-9.col-sm-9.col-xs-12
     .row.user__activity-stats
-      .col-xs-6.user__activity-stat.active
+      .col-xs-6.user__activity-stat
         %span.user__activity-stat_count= @user.articles.count
         %br
         Items
       .col-xs-6.user__activity-stat
-        %span.user__activity-stat_count 0
+        %span.user__activity-stat_count= Like.where(article: @user.articles).count
         %br
         Contributtion
     %ul.nav.nav-tabs
