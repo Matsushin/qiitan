@@ -1,11 +1,11 @@
 class CommentsController < ApplicationController
-  before_action :authenticate_user!
   before_action :set_article, only: %i[create update destroy]
   before_action :set_comment, only: %i[update destroy]
 
   def create
     @comment = @article.comments.build(comment_params)
     @comment.user = current_user
+    @comment.notifications.build(user: @article.user)
     if @comment.save
       Retryable.retryable { CommentMailer.comment_to_writer(@comment).deliver_now } unless current_user == @article.user
       redirect_to article_path(@article), notice: t('common.flash.created')

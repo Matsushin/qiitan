@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   root to: 'home#index'
 
-  resources :articles, only: %i[index show new create edit update] do
+  resources :articles, only: %i[show new create edit update] do
     collection do
       post :preview
     end
@@ -19,6 +19,14 @@ Rails.application.routes.draw do
   end
 
   resources :stocks, only: %i[index]
+  resources :notifications, only: %i(index) do
+    collection do
+      patch :read_all
+    end
+    member do
+      patch :read, format: :js
+    end
+  end
 
   if Rails.env.development?
     mount LetterOpenerWeb::Engine, at: '/letter_opener'

@@ -1,6 +1,5 @@
 class UsersController < ApplicationController
   LIKED_REQUEST = 'liked'
-  before_action :authenticate_user!
   before_action :set_user, only: %i[show]
 
   def show

@@ -1,0 +1,80 @@
+.notification__anchor-item
+  background-color: white
+  width: 100%
+  text-decoration: none
+  color: #555555
+  display: block
+  &:hover, &:after, &:focus
+    background-color: rgba(120,232,22,.2)
+    text-decoration: none
+    color: #555555
+  &.is-unread
+    background-color: rgba(120,232,22,.3)
+
+.notification__item-container
+  margin-bottom: 12px
+  padding: 14px
+
+.notification__photo
+  display: table-cell
+  img
+    width: 32px
+    height: 32px
+    box-shadow: 0 0 2px rgba(0,0,0,.3)
+    margin: 0 10px 0 5px
+
+.notification__message
+  display: table-cell
+  vertical-align: top
+
+.notification__notified-at
+  font-size: $font-size-small
+  display: inline-block
+
+.notification-widget__container
+  display: block
+  position: absolute
+  top: 40px
+  right: 0
+  z-index: 1000
+  width: 320px
+  height: 480px
+  background-color: white
+  padding: 16px 0
+  border: 1px solid #ddd
+  border-radius: 3px
+  box-shadow: 0 0 8px 0 rgba(0,0,0,.15)
+
+.notification-widget-header
+  display: flex
+  align-items: center
+  color: #333
+  font-size: 1.2rem
+  padding-right: 16px
+  padding-left: 16px
+  margin-bottom: 8px
+
+.notification-widget-body
+  width: 100%
+  height: calc(100% - 50px)
+
+.notifications__widget-item-container
+  border-bottom: 1px dotted #ccc
+  padding: 8px
+
+.notifications__widget-no-item-container
+  border-top: 1px solid $gray-little
+  padding: 20px 8px
+  background-color: white
+
+.notifications__widget-footer
+  display: flex
+  align-items: center
+  justify-content: center
+  color: $black
+  font-size: 1.2rem
+  padding: 0 16px
+  height: 30px
+  a
+    color: inherit
+    text-decoration: none

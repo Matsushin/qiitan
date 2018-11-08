@@ -1,0 +1,20 @@
+- widget ||= false
+- notifications.includes(notifiable: :article).each do |notification|
+  - notifiable = notification.notifiable
+  - user = notifiable.user
+  - read_class = 'js-notification-read' if notification.unread?
+  - read_url = read_notification_url(notification)
+  - anchor_class = widget ? 'notifications__widget-item-container' : 'notification__item-container'
+  = link_to article_path(notifiable.article), class: "notification__anchor-item #{anchor_class} #{read_class} #{add_unread_style(notification.unread?)}", data: { url: read_url } do
+    .notification__photo
+      = image_tag user.profile_image.thumb.url
+    .notification__message
+      %span.bold= notifiable.user.username
+      があなたの投稿
+      %span.bold「#{notifiable.article.title.truncate(18)}」
+      に
+      %span.bold #{notifiable == Like ? 'いいね' : 'コメント'}
+      しました。
+      %div{ class: "#{'pull-right' unless widget}" }
+        .notification__notified-at.text-muted
+          = l notification.created_at, format: :long

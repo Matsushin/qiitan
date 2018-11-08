@@ -2,6 +2,7 @@
   background-color: $green-little-dark
   height: 32px
   margin-top: 9px
+  margin-right: 16px
   border-radius: 4px
   padding: 5px 20px
 
@@ -12,8 +13,7 @@
     color: white
 
 .navbar-nav > li > a.navigation__dropdown-toggle
-  padding-top: 10px
-  padding-bottom: 10px
+  padding: 10px 0
 
 .navigation__icon
   border-radius: .2em
@@ -38,3 +38,25 @@
     color: white
   i
     margin-right: 4px
+
+.navigation__notification-section
+  display: flex
+  align-items: center
+  justify-content: center
+  width: 32px
+  height: 32px
+  background-color: #edfce2
+  color: $green
+  border-radius: 4px
+  font-size: 1.4rem
+  position: relative
+  cursor: pointer
+  margin-top: 9px
+  margin-right: 16px
+
+  &.active
+    background-color: $red
+    color: white
+
+.navigation__notification-widget-container
+  display: none

@@ -28,6 +28,11 @@
                 = link_to destroy_user_session_path, method: 'delete' do
                   = icon('fas', 'sign-out-alt', 'ログアウト')
         .nav.navbar-nav.navbar-right
+          .navigation__notification-section.js-switch-notification{ class: "#{current_user.notifications.unread.exists? ? 'active' : '' }" }
+            = current_user.notifications.unread.count
+            .js-notifications.navigation__notification-widget-container
+              = render 'notifications/widget'
+        .nav.navbar-nav.navbar-right
           = link_to icon('fas', 'pencil-alt', '投稿する'), new_article_path, class: 'btn btn-primary btn-sm navigation__new-article-btn'
         .nav.navbar-nav.navbar-right
           = link_to icon('fas', 'folder-open', 'ストック一覧'), stocks_path, class: 'navigation__stocks-link'

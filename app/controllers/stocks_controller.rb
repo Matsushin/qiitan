@@ -1,5 +1,4 @@
 class StocksController < ApplicationController
-  before_action :authenticate_user!
   before_action :set_article, only: %i[create destroy]
   before_action :set_stock, only: %i[destroy]
 

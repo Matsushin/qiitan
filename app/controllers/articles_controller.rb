@@ -1,10 +1,5 @@
 class ArticlesController < ApplicationController
-  before_action :authenticate_user!
   before_action :set_article, only: %i[show edit update]
-
-  def index
-    @articles = current_user.articles.order(created_at: :desc)
-  end
 
   def new
     @article = current_user.articles.build
@@ -13,7 +8,7 @@ class ArticlesController < ApplicationController
   def create
     @article = current_user.articles.build(article_params)
     if @article.save
-      redirect_to articles_path, notice: t('common.flash.created')
+      redirect_to article_path(@article), notice: t('common.flash.created')
     else
       flash.now[:alert] = @article.errors.full_messages.join('。')
       @article.errors.delete(:title)
@@ -22,19 +17,13 @@ class ArticlesController < ApplicationController
     end
   end
 
-  def show
-  end
+  def show; end
 
-  def edit
+  def edit; end
 
-  end
+  def update; end
 
-  def update
-
-  end
-
-  def preview
-  end
+  def preview; end
 
   private
 
