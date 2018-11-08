@@ -29,6 +29,7 @@ gem 'gemoji'
 gem 'enumerize'
 gem 'fog'
 gem 'mini_magick'
+gem 'retryable'
 
 source 'https://rails-assets.org' do
   gem 'rails-assets-toastr'

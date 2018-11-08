@@ -1,0 +1,6 @@
+%p [#{@comment.article.title}]にコメントがつきました。
+
+%p ー
+= simple_format(h(@comment.body))
+%p ー
+= link_to 'View it on Qiitan', article_url(@comment.article)
