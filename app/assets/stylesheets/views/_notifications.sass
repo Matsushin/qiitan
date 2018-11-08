@@ -2,18 +2,19 @@
   background-color: white
   width: 100%
   text-decoration: none
-  color: #555555
+  color: #555
   display: block
+  border-bottom: 1px dotted #ccc
   &:hover, &:after, &:focus
-    background-color: rgba(120,232,22,.2)
     text-decoration: none
-    color: #555555
-  &.is-unread
-    background-color: rgba(120,232,22,.3)
+    color: #555
 
 .notification__item-container
-  margin-bottom: 12px
-  padding: 14px
+  padding: 16px 0
+  .notification__photo
+    img
+      width: 40px
+      height: 40px
 
 .notification__photo
   display: table-cell
@@ -58,8 +59,11 @@
   height: calc(100% - 50px)
 
 .notifications__widget-item-container
-  border-bottom: 1px dotted #ccc
   padding: 8px
+  &:hover, &:after, &:focus
+    background-color: rgba(120,232,22,.2)
+  &.is-unread
+    background-color: rgba(120,232,22,.3)
 
 .notifications__widget-no-item-container
   border-top: 1px solid $gray-little
