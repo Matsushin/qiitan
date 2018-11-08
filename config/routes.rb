@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  mount_roboto
   root to: 'home#index'
 
   resources :articles, only: %i[show new create edit update] do
