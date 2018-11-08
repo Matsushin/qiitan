@@ -7,7 +7,7 @@ Rails.application.routes.draw do
     end
     resources :stocks, only: %i[create destroy], format: :js
     resources :likes, only: %i[create destroy], format: :js
-    resources :comments, only: %i[create update]
+    resources :comments, only: %i[create update destroy]
   end
 
   devise_for :users

@@ -1,0 +1,5 @@
+toastr.success("<%= t('common.flash.updated') %>");
+var $wrapper = $("#js-comment-<%= @comment.id %>");
+$wrapper.find('.js-comment-content').removeClass('hide');
+$wrapper.find('.js-comment-edit-form').addClass('hide');
+$wrapper.find('.js-comment-body').html("<%= j simple_format(h(@comment.body)) %>")

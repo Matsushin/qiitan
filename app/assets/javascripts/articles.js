@@ -25,4 +25,18 @@ $(function() {
             data: {body: body}
         })
     }
+
+    $('.js-comment-edit-link').click(function(e) {
+        var $wrapper = $(this).parents('.js-comment-wrapper')
+        $wrapper.find('.js-comment-content').addClass('hide');
+        $wrapper.find('.js-comment-edit-form').removeClass('hide');
+        e.preventDefault();
+    });
+
+    $('.js-comment-cancel-btn').click(function(e) {
+        var $wrapper = $(this).parents('.js-comment-wrapper')
+        $wrapper.find('.js-comment-content').removeClass('hide');
+        $wrapper.find('.js-comment-edit-form').addClass('hide');
+        e.preventDefault();
+    });
 });

@@ -1,27 +1,73 @@
-.article__item-container
-  .article__item-action-area
-    = render 'like_action', article: @article, like: current_user.likes.find_by(article: @article)
-    = render 'stock_action', article: @article, stock: current_user.stocks.find_by(article: @article)
-  .article__item-main-area
-    .article__item-main-section
-      .article__item-main-header
-        .article__item-main-header-info
-          .article__item-main-header-author
-            = link_to user_path(@article.user) do
-              = image_tag @article.user.profile_image.thumb.url, class: 'article__item-main-header-author-img'
-            .article__item-main-header-author-name
-              = link_to @article.user.username, user_path(@article.user)
-          .article__item-main-header-author-time
-            %span
-              %time= l(@article.updated_at.to_date, format: :date_short)
-              に更新
-          - if @article.user == current_user
-            .article__item-main-header-meta
-              .article_item-main-header-edit
-                = link_to icon('fas', 'pencil-alt', '編集する'), edit_article_path(@article)
-        %h1.article__item-main-header-title= @article.title
-      .article__item-main-body
-        = qiita_markdown(@article.body)
-  .article__item-option-area
-  .article__item-agenda-area
-    = qiita_toc(@article.body)
+.article__item-wrapper
+  .article__item-container
+    .article__item-action-area
+      = render 'like_action', article: @article, like: current_user.likes.find_by(article: @article)
+      = render 'stock_action', article: @article, stock: current_user.stocks.find_by(article: @article)
+    .article__item-main-area
+      .article__item-main-section
+        .article__item-main-header
+          .article__item-main-header-info
+            .article__item-main-header-author
+              = link_to user_path(@article.user) do
+                = image_tag @article.user.profile_image.thumb.url, class: 'article__item-main-header-author-img'
+              .article__item-main-header-author-name
+                = link_to @article.user.username, user_path(@article.user)
+            .article__item-main-header-author-time
+              %span
+                %time= l(@article.updated_at.to_date, format: :date_short)
+                に更新
+            - if @article.user == current_user
+              .article__item-main-header-meta
+                .article_item-main-header-edit
+                  = link_to icon('fas', 'pencil-alt', '編集する'), edit_article_path(@article)
+          %h1.article__item-main-header-title= @article.title
+        .article__item-main-body
+          = qiita_markdown(@article.body)
+    .article__item-option-area
+    .article__item-agenda-area
+      = qiita_toc(@article.body)
+.comment__container
+  .comment__dummy-area
+  .comment__main-area
+    - @article.comments.includes(:user).order(:created_at).each do |comment|
+      .comment__wrapper.js-comment-wrapper{ id: "js-comment-#{comment.id}" }
+        .js-comment-content
+          .comment__header
+            .comment__header-creator
+              .comment__icon
+                = image_tag comment.user.profile_image.thumb.url
+              .comment__header-creator-info
+                .comment__header-creator-username
+                  = link_to comment.user.username, user_path(comment.user)
+                .comment__header-contribution
+                  %span.comment__header-contribution-count= Like.where(article: comment.user.articles).count
+                  %span.comment__header-contribution-unit Contribution
+            .pull-right
+              .text-muted= l(comment.created_at, format: :long)
+              - if current_user == comment.user
+                .text-right.comment__header-edit-section
+                  = link_to '編集', '#', class: 'js-comment-edit-link'
+                  = link_to '削除', article_comment_path(@article, comment), remote: true, method: :delete,
+                                                                              data: { confirm: '削除してよろしいですか？' }
+          .comment__body-container
+            .comment__body.js-comment-body
+              = simple_format(h(comment.body))
+        .comment__edit-form-container.hide.js-comment-edit-form
+          = simple_form_for(comment, url: article_comment_path(@article, comment), remote: true) do |f|
+            .comment__form-header
+              .comment__icon
+                = image_tag current_user.profile_image.thumb.url
+              .comment__form-header-label コメントを投稿する
+            = f.input :body, placeholder: 'コメントを入力してください', label: false, input_html: { rows: 5 }
+            .pull-right
+              %button.btn.btn-default.js-comment-cancel-btn キャンセル
+              = f.submit '更新', class: 'btn btn-primary'
+            .clearfix
+    = simple_form_for(current_user.comments.build, url: article_comments_path(@article)) do |f|
+      .comment__form-header
+        .comment__icon
+          = image_tag current_user.profile_image.thumb.url
+        .comment__form-header-label コメントを投稿する
+      = f.input :body, placeholder: 'コメントを入力してください', label: false, input_html: { rows: 5 }
+      .pull-right
+        = f.submit '投稿', class: 'btn btn-primary'

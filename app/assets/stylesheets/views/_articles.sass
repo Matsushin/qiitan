@@ -189,12 +189,12 @@
 .artilce__items-status-liked
   color: $green !important
 
-.articles.show
-  main.main__navigation
-    background-color: $gray-little
-    .container
-      width: 100%
-      padding: 0
+.articles.show main.main__navigation .container
+  width: 100%
+  padding: 0
+
+.article__item-wrapper
+  background-color: $gray-little
 
 .article__item-container
   padding-top: 24px
@@ -400,3 +400,111 @@
       &:hover
         background-color: #efefef
         color: #333
+
+.comment__container
+  background-color: white
+  display: grid
+  grid-template-columns: 80px calc(100% - 300px - 80px) 300px
+  grid-template-rows: minmax(270px,auto) 1fr
+  max-width: 1280px
+  width: calc(100% - 50px)
+  margin-right: auto
+  margin-left: auto
+  padding-top: 30px
+
+.comment__dummy-area
+  width: 80px
+  grid-column: 1 / 3
+  grid-row: 1 / 2
+
+.comment__main-area
+  grid-column: 2 / 3
+  grid-row: 1 / 3
+  padding: 16px
+
+.comment__header-creator
+  display: inline-block
+
+.comment__header-creator-info
+  display: inline-block
+  margin-left: 10px
+
+.comment__header-creator-username
+  display: block
+  margin-top: 1px
+  font-size: 15px
+  font-weight: bold
+
+.comment__header-contribution
+  display: block
+  margin-top: 2px
+  color: #999
+  font-size: 12px
+  font-weight: 400
+
+.comment__header-contribution-count
+  color: #6f6f6f
+  font-size: 13px
+
+.comment__header-contribution-unit
+  color: #999
+  margin-left: 2px
+  font-size: 11px
+
+.comment__header-edit-section a
+  color: #777
+
+.comment__body-container
+  border-radius: 3px
+  position: relative
+  background-color: #fff
+  border: solid 1px #ccc
+  margin-top: 11px
+  margin-bottom: 20px
+
+  &:before, &:after
+    bottom: 100%
+    left: 17px
+    border: solid transparent
+    content: ' '
+    height: 0
+    width: 0
+    position: absolute
+
+  &:before
+    border-bottom-color: #d9d9d9
+    border-width: 7px
+    margin-left: -7px
+
+  &:after
+    border-bottom-color: white
+    border-width: 6px
+    margin-left: -6px
+
+.comment__body
+  padding: 18px 32px
+
+.comment__edit-form-container
+  margin-bottom: 20px
+
+.comment__form-header
+  margin-bottom: 10px
+
+.comment__icon
+  border-radius: 3px
+  display: inline-block
+  line-height: 1
+  overflow: hidden
+  vertical-align: middle
+  vertical-align: top
+  img
+    width: 36px
+    height: 36px
+
+.comment__form-header-label
+  display: inline-block
+  line-height: 36px
+  font-size: 15px
+  font-weight: 700
+  margin-top: 0
+  margin-left: 10px

@@ -14,6 +14,9 @@
       .article__items-status
         - if article.likes.exists?
           = icon 'fas', 'thumbs-up', article.likes.count, class: "#{current_user.likes.exists?(article: article) ? 'artilce__items-status-liked' : ''}"
+        - if article.comments.exists?
+          = icon 'far', 'comment'
+          = link_to article.comments.count, article_path(article)
   = paginate articles
 - else
   %p 記事が1つもありません。
