@@ -3,7 +3,7 @@
     = icon('far', 'bell', 'お知らせ')
   .notification-widget-body
     - if current_user.notifications.exists?
-      - notifications = current_user.notifications.includes(notifiable: :user).order(created_at: :desc).limit(Notification::WIDGET_DISPLAY_COUNT)
+      - notifications = current_user.notifications.order(created_at: :desc).limit(Notification::WIDGET_DISPLAY_COUNT)
       = render 'notifications/items', notifications: notifications, widget: true
   .notifications__widget-footer.text-center
     = link_to '通知一覧を見る', notifications_path
