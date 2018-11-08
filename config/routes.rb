@@ -21,10 +21,7 @@ Rails.application.routes.draw do
   resources :stocks, only: %i[index]
   resources :notifications, only: %i(index) do
     collection do
-      patch :read_all
-    end
-    member do
-      patch :read, format: :js
+      patch :read_all, format: :js
     end
   end
 
