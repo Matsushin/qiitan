@@ -2,7 +2,7 @@ class NotificationsController < ApplicationController
   before_action :set_notification, only: %i(read)
 
   def index
-    @notifications = current_user.notifications.includes(notifiable: :user).order(created_at: :desc)
+    @notifications = current_user.notifications.includes(notifiable: :user).order(created_at: :desc).page(params[:page])
   end
 
   def read

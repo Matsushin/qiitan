@@ -15,6 +15,5 @@
       に
       %span.bold #{notifiable == Like ? 'いいね' : 'コメント'}
       しました。
-      %div{ class: "#{'pull-right' unless widget}" }
-        .notification__notified-at.text-muted
-          = l notification.created_at, format: :long
+      .notification__notified-at.text-muted
+        = l notification.created_at, format: :long
