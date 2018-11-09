@@ -1,3 +1,17 @@
+GIT
+  remote: https://github.com/increments/qiita-markdown.git
+  revision: 5560b5c996945d85f4cd0a1d83299ca8241e8686
+  specs:
+    qiita-markdown (0.26.0)
+      addressable
+      gemoji
+      github-linguist (~> 4.0)
+      greenmat (= 3.2.2.4)
+      html-pipeline (~> 2.0)
+      mem
+      pygments.rb (~> 1.0)
+      sanitize
+
 GEM
   remote: https://rubygems.org/
   remote: https://rails-assets.org/
@@ -274,7 +288,7 @@ GEM
       temple (>= 0.8.0)
       thor
       tilt
-    html-pipeline (2.8.4)
+    html-pipeline (2.9.0)
       activesupport (>= 2)
       nokogiri (>= 1.4)
     html2haml (2.2.0)
@@ -348,15 +362,6 @@ GEM
     puma (3.12.0)
     pygments.rb (1.2.1)
       multi_json (>= 1.0.0)
-    qiita-markdown (0.26.0)
-      addressable
-      gemoji
-      github-linguist (~> 4.0)
-      greenmat (= 3.2.2.4)
-      html-pipeline (~> 2.0)
-      mem
-      pygments.rb (~> 1.0)
-      sanitize
     rack (2.0.5)
     rack-test (1.1.0)
       rack (>= 1.0, < 3)
@@ -505,7 +510,7 @@ DEPENDENCIES
   mini_magick
   mysql2 (>= 0.3.18, < 0.6.0)
   puma (~> 3.7)
-  qiita-markdown
+  qiita-markdown!
   rails (~> 5.1.6)
   rails-assets-toastr!
   ransack
