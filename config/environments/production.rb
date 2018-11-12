@@ -101,4 +101,5 @@ Rails.application.configure do
     authentication: :plain,
     enable_starttls_auto: true
   }
+  config.eager_load_paths += %W(#{config.root}/lib/)
 end
