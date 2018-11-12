@@ -5,5 +5,5 @@ Qiitaのコピーアプリ
 http://qiitan-prd.herokuapp.com/
 
 # Basic認証
-ユーザ： admin
-パスワード： vdqXhqpuqieJ8kjCqgNYkvGP
+- ユーザ： admin
+- パスワード： vdqXhqpuqieJ8kjCqgNYkvGP
