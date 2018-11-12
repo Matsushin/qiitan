@@ -21,7 +21,16 @@ class ArticlesController < ApplicationController
 
   def edit; end
 
-  def update; end
+  def update
+    if @article.update(article_params)
+      redirect_to article_path(@article), notice: t('common.flash.updated')
+    else
+      flash.now[:alert] = @article.errors.full_messages.join('。')
+      @article.errors.delete(:title)
+      @article.errors.delete(:body)
+      render :edit
+    end
+  end
 
   def preview; end
 

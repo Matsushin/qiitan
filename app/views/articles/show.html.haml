@@ -22,10 +22,10 @@
                   = link_to icon('fas', 'pencil-alt', '編集する'), edit_article_path(@article)
           %h1.article__item-main-header-title= @article.title
         .article__item-main-body
-          = qiita_markdown(@article.body)
+          = markdown(@article.body)
     .article__item-option-area
     .article__item-agenda-area
-      = qiita_toc(@article.body)
+      = toc(@article.body)
 .comment__container
   .comment__dummy-area
   .comment__main-area
