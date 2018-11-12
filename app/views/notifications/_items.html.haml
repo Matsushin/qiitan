@@ -12,7 +12,7 @@
       があなたの投稿
       %span.bold「#{notifiable.article.title.truncate(18)}」
       に
-      %span.bold #{notifiable == Like ? 'いいね' : 'コメント'}
+      %span.bold #{notifiable.class == Like ? 'いいね' : 'コメント'}
       しました。
       .notification__notified-at.text-muted
         = l notification.created_at, format: :long
