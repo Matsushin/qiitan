@@ -32,6 +32,7 @@ gem 'roboto'
 gem 'redcarpet'
 gem 'rouge'
 gem 'rack-dev-mark'
+gem 'foreman'
 
 source 'https://rails-assets.org' do
   gem 'rails-assets-toastr'
