@@ -1,48 +1,14 @@
-FROM ruby:2.5.1-alpine3.7
-ENV LANG C.UTF-8
-RUN apk upgrade && \
-    apk add --no-cache \
-    bash \
-    build-base \
-    chromium \
-    chromium-chromedriver \
-    curl-dev \
-    git \
-    graphviz \
-    imagemagick \
-    imagemagick-dev \
-    less \
-    libxml2-dev \
-    libxslt-dev \
-    mysql-client \
-    mysql-dev \
-    nodejs \
-    openssl \
-    readline \
-    readline-dev \
-    tar \
-    ttf-freefont \
-    tzdata \
-    udev \
-    wget \
-    yaml \
-    yaml-dev\
-    zlib \
-    zlib-dev
+FROM ruby:2.5.1
+ENV HOME /qiitan
+WORKDIR $HOME
 
-RUN gem install bundler
-RUN gem update
+ADD Gemfile      $HOME/Gemfile
+ADD Gemfile.lock $HOME/Gemfile.lock
 
-ENV APP_HOME /qiitan
-RUN mkdir $APP_HOME
-WORKDIR $APP_HOME
+RUN apt-get update -qq && apt-get install -y build-essential libpq-dev nodejs vim
 
-ENV GEM_HOME=/bundle
+RUN bundle install -j4
 
-ADD Gemfile* $APP_HOME/
+ADD . $HOME
 
-ENV BUNDLE_GEMFILE=$APP_HOME/Gemfile \
-  BUNDLE_JOBS=2 \
-  BUNDLE_PATH=$GEM_HOME
-
-ADD . $APP_HOME
+CMD ["rails", "server", "-b", "0.0.0.0"]

@@ -5,13 +5,13 @@ services:
     environment:
       MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
     ports:
-      - "3306:3306"
+      - "4306:3306"
     volumes:
       - db-data:/var/lib/mysql
       - ./mysqlconf:/etc/mysql/conf.d
   web:
     build: .
-    command: bash -c "rm -f tmp/pids/server.pid && bundle exec foreman start"
+    command: bundle exec rails s -p 3000 -b '0.0.0.0'
     volumes:
       - .:/qiitan
       - bundle:/bundle
