@@ -8,6 +8,16 @@ jobs:
     docker:
     # specify the version you desire here
     - image: circleci/ruby:2.4.1-node-browsers
+      environment:
+        RAILS_ENV: test
+        DATABASE_HOSTNAME: '127.0.0.1'
+        DATABASE_NAME: qiitan
+        DATABASE_USERNAME: root
+        DATABASE_PASSWORD: ''
+        TZ: UTC
+    - image: circleci/mysql:5.7-ram
+      environment:
+        TZ: UTC
 
     # Specify service dependencies here if necessary
     # CircleCI maintains a library of pre-built images
