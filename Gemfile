@@ -53,3 +53,15 @@ group :development do
   gem 'binding_of_caller'
   gem 'bullet'
 end
+
+group :test do
+  gem 'rspec-rails'
+  gem 'factory_bot_rails'
+  gem 'faker'
+  gem 'capybara'
+  gem 'database_cleaner'
+  gem 'selenium-webdriver'
+  gem 'chromedriver-helper'
+  gem 'email_spec'
+  gem 'simplecov', require: false
+end
