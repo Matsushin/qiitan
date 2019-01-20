@@ -35,7 +35,12 @@ jobs:
         - v1-dependencies-{{ checksum "Gemfile.lock" }}
         # fallback to using the latest cache if no exact match is found
         - v1-dependencies-
-
+    - run:
+        name: Install Latest Google Chrome
+        command: |
+          sudo apt-get install libappindicator3-1
+          sudo curl -L -o google-chrome.deb https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+          sudo dpkg -i google-chrome.deb
     - run:
         name: install dependencies
         command: |
