@@ -33,6 +33,8 @@ gem 'redcarpet'
 gem 'rouge'
 gem 'rack-dev-mark'
 gem 'foreman'
+gem 'sentry-raven'
+gem 'newrelic_rpm'
 
 source 'https://rails-assets.org' do
   gem 'rails-assets-toastr'

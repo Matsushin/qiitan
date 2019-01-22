@@ -126,6 +126,8 @@ GEM
       railties (>= 3.0.0)
     faker (1.9.1)
       i18n (>= 0.7)
+    faraday (0.15.4)
+      multipart-post (>= 1.2, < 3)
     ffi (1.9.25)
     fission (0.5.0)
       CFPropertyList (~> 2.2)
@@ -357,8 +359,10 @@ GEM
     mini_portile2 (2.3.0)
     minitest (5.11.3)
     multi_json (1.13.1)
+    multipart-post (2.0.0)
     mysql2 (0.5.2)
     netrc (0.11.0)
+    newrelic_rpm (5.7.0.350)
     nio4r (2.3.1)
     nokogiri (1.8.5)
       mini_portile2 (~> 2.3.0)
@@ -468,6 +472,8 @@ GEM
     selenium-webdriver (3.141.0)
       childprocess (~> 0.5)
       rubyzip (~> 1.2, >= 1.2.2)
+    sentry-raven (2.8.0)
+      faraday (>= 0.7.6, < 1.0)
     sexp_processor (4.11.0)
     simple_form (4.0.1)
       actionpack (>= 5.0)
@@ -551,6 +557,7 @@ DEPENDENCIES
   listen (>= 3.0.5, < 3.2)
   mini_magick
   mysql2 (>= 0.3.18, < 0.6.0)
+  newrelic_rpm
   puma (~> 3.7)
   rack-dev-mark
   rails (~> 5.1.6)
@@ -564,6 +571,7 @@ DEPENDENCIES
   rspec_junit_formatter
   sass-rails (~> 5.0)
   selenium-webdriver
+  sentry-raven
   simple_form
   simplecov
   spring

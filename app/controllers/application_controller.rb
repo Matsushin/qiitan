@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   before_action :authorize_basic
+  before_action :set_raven_context
   before_action :authenticate_user!
   before_action :configure_permitted_parameters, if: :devise_controller?
 
@@ -20,5 +21,10 @@ class ApplicationController < ActionController::Base
     authenticate_or_request_with_http_basic('BA') do |name, password|
       name == ENV['BASIC_NAME'] && password == ENV['BASIC_PASSWORD']
     end
+  end
+
+  def set_raven_context
+    Raven.user_context(id: session[:current_user_id])
+    Raven.extra_context(params: params.to_unsafe_h, url: request.url)
   end
 end
