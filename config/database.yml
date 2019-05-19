@@ -10,11 +10,13 @@ default: &default
 
 development:
   <<: *default
-  database: qiitan_development
 
 test:
   <<: *default
   database: qiitan_test
 
+staging:
+  <<: *default
+
 production:
-  url: <%= ENV['DATABASE_URL'] %>
+  <<: *default

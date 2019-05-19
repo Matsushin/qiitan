@@ -20,6 +20,11 @@ services:
       - "3035:3035"
     links:
       - db
+    environment:
+      DATABASE_USERNAME: root
+      DATABASE_PASSWORD: ""
+      DATABASE_HOSTNAME: db
+      DATABASE_NAME: qiitan
 volumes:
   db-data:
     driver: local
