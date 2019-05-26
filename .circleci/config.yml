@@ -4,7 +4,7 @@
 #
 version: 2
 jobs:
-  build:
+  build_and_test:
     docker:
     # specify the version you desire here
     - image: circleci/ruby:2.4.1-node-browsers
@@ -27,74 +27,95 @@ jobs:
     working_directory: ~/circleci-rails
 
     steps:
-    - checkout
-    - setup_remote_docker
+      - checkout
 
-    # Download and cache dependencies
-    - restore_cache:
-        keys:
-        - v1-dependencies-{{ checksum "Gemfile.lock" }}
-        # fallback to using the latest cache if no exact match is found
-        - v1-dependencies-
-    - run:
-        name: Install Latest Google Chrome
-        command: |
-          sudo apt-get install libappindicator3-1
-          sudo curl -L -o google-chrome.deb https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-          sudo dpkg -i google-chrome.deb
-    - run:
-        name: install dependencies
-        command: |
-          bundle install --jobs=4 --retry=3 --path vendor/bundle
+      # Download and cache dependencies
+      - restore_cache:
+          keys:
+          - v1-dependencies-{{ checksum "Gemfile.lock" }}
+          # fallback to using the latest cache if no exact match is found
+          - v1-dependencies-
+      - run:
+          name: Install Latest Google Chrome
+          command: |
+            sudo apt-get install libappindicator3-1
+            sudo curl -L -o google-chrome.deb https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+            sudo dpkg -i google-chrome.deb
+      - run:
+          name: install dependencies
+          command: |
+            bundle install --jobs=4 --retry=3 --path vendor/bundle
 
-    - save_cache:
-        paths:
-        - ./vendor/bundle
-        key: v1-dependencies-{{ checksum "Gemfile.lock" }}
+      - save_cache:
+          paths:
+          - ./vendor/bundle
+          key: v1-dependencies-{{ checksum "Gemfile.lock" }}
 
-    # Database setup
-    - run: bundle exec rake db:create
-    - run: bundle exec rake db:schema:load
+      # Database setup
+      - run: bundle exec rake db:create
+      - run: bundle exec rake db:schema:load
 
-    # run tests!
-    - run:
-        name: run tests
-        command: |
-          mkdir /tmp/test-results
-          TEST_FILES="$(circleci tests glob "spec/**/*_spec.rb" | circleci tests split --split-by=timings)"
+      # run tests!
+      - run:
+          name: run tests
+          command: |
+            mkdir /tmp/test-results
+            TEST_FILES="$(circleci tests glob "spec/**/*_spec.rb" | circleci tests split --split-by=timings)"
 
-          bundle exec rspec --format progress \
-                          --format RspecJunitFormatter \
-                          --out /tmp/test-results/rspec.xml \
-                          --format progress \
-                          $TEST_FILES
-    - run:
-        name: Installing deployment dependencies
-        command: |
-          sudo apt-get -y -qq update
-          sudo apt-get install python-pip python-dev build-essential
-          pip install --upgrade pip
-          pip install awsebcli --upgrade
-    - run: $(aws ecr get-login --region ap-northeast-1 --no-include-email)
-    - run:
-        name: Build ECR API
-        command: |
-          docker build -f ./docker/stg/Dockerfile  -t qiitan/stg .
-    - run:
-        ame: TAG ECR API
-        command: |
-          docker tag qiitan/stg $AWS_ACCOUNT_ID.dkr.ecr.ap-northeast-1.amazonaws.com/qiitan/stg:latest
-    - run:
-        name: Deploy
-        command: |
-          if [ "${CIRCLE_BRANCH}" == "develop" ]; then
-            export AWS_DEFAULT_REGION="ap-northeast-1"
-            bash ./scripts/deploy.sh
-          fi
+            bundle exec rspec --format progress \
+                            --format RspecJunitFormatter \
+                            --out /tmp/test-results/rspec.xml \
+                            --format progress \
+                            $TEST_FILES
+        # collect reports
+      - store_test_results:
+          path: /tmp/test-results
+      - store_artifacts:
+          path: /tmp/test-results
+          destination: test-results
 
-    # collect reports
-    - store_test_results:
-        path: /tmp/test-results
-    - store_artifacts:
-        path: /tmp/test-results
-        destination: test-results
+  deploy:
+    machine:
+      image: circleci/classic:edge
+      python:
+        version: 2.7.12
+    steps:
+      - checkout
+      - run:
+          name: Installing deployment dependencies
+          command: |
+            sudo apt-get -y -qq update
+            sudo apt-get install python-pip python-dev build-essential
+            pip install --upgrade pip
+            pip install awsebcli --upgrade
+      - run: $(aws ecr get-login --region ap-northeast-1 --no-include-email)
+      - run:
+          name: Build ECR API
+          command: |
+            docker build -f ./docker/stg/Dockerfile  -t qiitan/stg .
+      - run:
+          ame: TAG ECR API
+          command: |
+            docker tag qiitan/stg $AWS_ACCOUNT_ID.dkr.ecr.ap-northeast-1.amazonaws.com/qiitan/stg:latest
+      - run:
+          name: Deploy
+          command: |
+            if [ "${CIRCLE_BRANCH}" == "develop" ]; then
+              export AWS_DEFAULT_REGION="ap-northeast-1"
+              bash ./scripts/deploy.sh
+            fi
+
+workflows:
+  version: 2
+  build_and_deploy:
+    jobs:
+      - build_and_test
+      - deploy:
+          requires:
+            - build_and_test
+          filters:
+            branches:
+              only:
+                - DEPLOY/test
+                - develop
+                - fixes/circleci-deploy-failed
