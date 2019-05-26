@@ -18,6 +18,7 @@ jobs:
     - image: circleci/mysql:5.7-ram
       environment:
         TZ: UTC
+    - image: innovatorjapan/awscli:latest
 
     # Specify service dependencies here if necessary
     # CircleCI maintains a library of pre-built images
@@ -68,7 +69,6 @@ jobs:
                           --out /tmp/test-results/rspec.xml \
                           --format progress \
                           $TEST_FILES
-    - run: sudo pip install awscli
     - run: $(aws ecr get-login --region ap-northeast-1 --no-include-email)
     - run:
         name: Build ECR API
