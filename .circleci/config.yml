@@ -101,10 +101,8 @@ jobs:
       - run:
           name: Deploy
           command: |
-            if [ "${CIRCLE_BRANCH}" == "develop" ]; then
-              export AWS_DEFAULT_REGION="ap-northeast-1"
-              bash ./scripts/deploy.sh
-            fi
+            export AWS_DEFAULT_REGION="ap-northeast-1"
+            bash ./scripts/deploy.sh
 
 workflows:
   version: 2
