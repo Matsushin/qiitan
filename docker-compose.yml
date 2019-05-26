@@ -10,7 +10,9 @@ services:
       - db-data:/var/lib/mysql
       - ./mysqlconf:/etc/mysql/conf.d
   web:
-    build: .
+    build:
+      context: .
+      dockerfile: docker/stg/Dockerfile
     command: bundle exec rails s -p 3000 -b '0.0.0.0'
     volumes:
       - .:/qiitan
@@ -25,6 +27,7 @@ services:
       DATABASE_PASSWORD: ""
       DATABASE_HOSTNAME: db
       DATABASE_NAME: qiitan
+    tty: true
 volumes:
   db-data:
     driver: local

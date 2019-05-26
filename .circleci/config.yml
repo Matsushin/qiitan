@@ -28,6 +28,7 @@ jobs:
 
     steps:
     - checkout
+    - setup_remote_docker
 
     # Download and cache dependencies
     - restore_cache:
@@ -67,6 +68,23 @@ jobs:
                           --out /tmp/test-results/rspec.xml \
                           --format progress \
                           $TEST_FILES
+    - run: sudo pip install awscli
+    - run: $(aws ecr get-login --region ap-northeast-1 --no-include-email)
+    - run:
+        name: Build ECR API
+        command: |
+          docker build -f ./docker/stg/Dockerfile  -t qiitan/stg .
+    - run:
+        ame: TAG ECR API
+        command: |
+          docker tag qiitan/stg $AWS_ACCOUNT_ID.dkr.ecr.ap-northeast-1.amazonaws.com/qiitan/stg:latest
+    - run:
+        name: Deploy
+        command: |
+          if [ "${CIRCLE_BRANCH}" == "develop" ]; then
+            export AWS_DEFAULT_REGION="ap-northeast-1"
+            bash ./scripts/deploy.sh
+          fi
 
     # collect reports
     - store_test_results:
