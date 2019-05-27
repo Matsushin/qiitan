@@ -8,7 +8,7 @@ cat << EOF > run_task_db_migrate.json
 {
   "containerOverrides": [
     {
-      "name": "app",
+      "name": "qiitan-stg",
       "command": ["bundle", "exec", "rails", "db:migrate"]
     }
   ]

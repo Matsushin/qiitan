@@ -35,9 +35,6 @@ RUN gem install bundler
 
 ARG RAILS_ENV=staging
 ARG RACK_ENV=staging
-ARG SECRET_KEY_BASE
-ARG AWS_ACCESS_KEY_ID=''
-ARG AWS_SECRET_ACCESS_KEY=''
 
 RUN mkdir /app
 WORKDIR /app
