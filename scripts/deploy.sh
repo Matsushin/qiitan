@@ -17,7 +17,7 @@ cat << EOF > run_task_db_migrate.json
 EOF
 
 aws ecs run-task \
-  --region ap-northeast-1\
+  --region ap-northeast-1 \
   --cluster qiitan-cluster-stg \
   --task-definition qiitan-stg \
   --overrides file://run_task_db_migrate.json
