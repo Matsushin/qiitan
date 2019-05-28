@@ -22,4 +22,9 @@ aws ecs run-task \
   --task-definition qiitan-stg \
   --overrides file://run_task_db_migrate.json
 
-./scripts/ecs-deploy --cluster qiitan-cluster-stg --service-name qiitan-service-stg-daemon --image $AWS_ACCOUNT_ID.dkr.ecr.ap-northeast-1.amazonaws.com/qiitan/stg:latest --timeout 600
+./scripts/ecs-deploy \
+  --cluster qiitan-cluster-stg \
+  --service-name qiitan-service-stg-daemon \
+  --image $AWS_ACCOUNT_ID.dkr.ecr.ap-northeast-1.amazonaws.com/qiitan/stg:latest \
+  --timeout 600 \
+  --aws-assume-role qiitan-ecs-task-execution-role-stg
