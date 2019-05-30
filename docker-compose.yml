@@ -20,7 +20,7 @@ services:
     ports:
       - "3000:3000"
       - "3035:3035"
-    links:
+    depends_on:
       - db
     environment:
       DATABASE_USERNAME: root
