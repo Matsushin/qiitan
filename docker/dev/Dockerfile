@@ -25,12 +25,21 @@ RUN apk update && \
     imagemagick
 
 RUN gem install bundler
+RUN gem update
 
-RUN mkdir /app
-WORKDIR /app
-ADD Gemfile /app/Gemfile
-ADD Gemfile.lock /app/Gemfile.lock
+ENV APP_HOME /qiitan
+RUN mkdir $APP_HOME
+WORKDIR $APP_HOME
+
+ENV GEM_HOME=/bundle
+
+ADD Gemfile* $APP_HOME/
+
+ENV BUNDLE_GEMFILE=$APP_HOME/Gemfile \
+  BUNDLE_JOBS=2 \
+  BUNDLE_PATH=$GEM_HOME
+
 RUN bundle install --jobs 4
-ADD . /app
+ADD . $APP_HOME
 
 EXPOSE 3000
