@@ -26,5 +26,4 @@ aws ecs run-task \
   --cluster qiitan-cluster-stg \
   --service-name qiitan-service-stg-daemon \
   --image $AWS_ACCOUNT_ID.dkr.ecr.ap-northeast-1.amazonaws.com/qiitan/stg:latest \
-  --timeout 600 \
-  --aws-instance-profile
+  --timeout 600
