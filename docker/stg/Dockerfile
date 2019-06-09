@@ -32,6 +32,7 @@ RUN pip3 install --upgrade pip
 RUN pip3 install awscli
 
 RUN gem install bundler
+RUN gem update
 
 ARG RAILS_ENV=staging
 ARG RACK_ENV=staging
@@ -39,16 +40,23 @@ ARG SECRET_KEY_BASE
 ARG AWS_ACCESS_KEY_ID=''
 ARG AWS_SECRET_ACCESS_KEY=''
 
-RUN mkdir /app
-WORKDIR /app
-ADD Gemfile /app/Gemfile
-ADD Gemfile.lock /app/Gemfile.lock
+ENV APP_HOME /qiitan
+RUN mkdir $APP_HOME
+WORKDIR $APP_HOME
+
+ENV GEM_HOME=/bundle
+
+ADD Gemfile* $APP_HOME/
+
+ENV BUNDLE_GEMFILE=$APP_HOME/Gemfile \
+  BUNDLE_JOBS=2 \
+  BUNDLE_PATH=$GEM_HOME
 
 RUN bundle config build.nokogiri --use-system-libraries && \
     bundle config build.mysql2 --use-system-libraries && \
     bundle install --jobs 20 --retry 5
 
-ADD . /app
+ADD . $APP_HOME
 
 EXPOSE 3000
 
