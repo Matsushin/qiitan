@@ -1,5 +1,5 @@
 class ArticlesController < ApplicationController
-  before_action :set_article, only: %i[show edit update]
+  before_action :set_article, only: %i[show edit update destroy]
 
   def new
     @article = current_user.articles.build
@@ -29,6 +29,15 @@ class ArticlesController < ApplicationController
       @article.errors.delete(:title)
       @article.errors.delete(:body)
       render :edit
+    end
+  end
+
+  def destroy
+    if @article.destroy
+       flash[:notice] = "投稿が削除されました"
+       redirect_to root_path
+    else
+      flash[:alert] = "投稿の削除に失敗しました"
     end
   end
 

@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   mount_roboto
   root to: 'home#index'
 
-  resources :articles, only: %i[show new create edit update] do
+  resources :articles, only: %i[show new create edit update destroy] do
     collection do
       post :preview
     end

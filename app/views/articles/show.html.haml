@@ -20,6 +20,8 @@
               .article__item-main-header-meta
                 .article_item-main-header-edit
                   = link_to icon('fas', 'pencil-alt', '編集する'), edit_article_path(@article)
+                  = link_to icon('fas', 'trash-alt', '削除する'), article_path(@article), method: :delete,
+                    data: { confirm: "削除してもよろしいですか？？" }
           %h1.article__item-main-header-title= @article.title
         .article__item-main-body
           = markdown(@article.body)
