@@ -60,11 +60,11 @@ group :test do
   gem 'rspec-rails'
   gem 'factory_bot_rails'
   gem 'faker'
-  gem 'capybara'
+  gem 'capybara', '~> 2.13'
   gem 'database_cleaner'
-  gem 'selenium-webdriver'
-  gem 'chromedriver-helper'
+  gem 'webdrivers', '~> 3.2'
   gem 'email_spec'
   gem 'rspec_junit_formatter'
   gem 'simplecov', require: false
+  gem 'selenium-webdriver'
 end
