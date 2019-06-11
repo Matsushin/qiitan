@@ -42,6 +42,8 @@ GEM
       tzinfo (~> 1.1)
     addressable (2.6.0)
       public_suffix (>= 2.0.2, < 4.0)
+    archive-zip (0.11.0)
+      io-like (~> 0.3.0)
     arel (8.0.0)
     autoprefixer-rails (9.3.1)
       execjs
@@ -74,6 +76,9 @@ GEM
       mime-types (>= 1.16)
     childprocess (1.0.1)
       rake (< 13.0)
+    chromedriver-helper (2.1.0)
+      archive-zip (~> 0.10)
+      nokogiri (~> 1.8)
     coderay (1.1.2)
     coffee-rails (4.2.2)
       coffee-script (>= 2.2.0)
@@ -305,6 +310,7 @@ GEM
       domain_name (~> 0.5)
     i18n (1.6.0)
       concurrent-ruby (~> 1.0)
+    io-like (0.3.0)
     ipaddress (0.8.3)
     jbuilder (2.8.0)
       activesupport (>= 4.2.0)
@@ -530,6 +536,7 @@ DEPENDENCIES
   byebug
   capybara (~> 2.13)
   carrierwave
+  chromedriver-helper
   coffee-rails (~> 4.2)
   database_cleaner
   devise

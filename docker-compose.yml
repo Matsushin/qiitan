@@ -22,12 +22,17 @@ services:
       - "3035:3035"
     depends_on:
       - db
+      - chrome
     environment:
       DATABASE_USERNAME: root
       DATABASE_PASSWORD: ""
       DATABASE_HOSTNAME: db
       DATABASE_NAME: qiitan
     tty: true
+  chrome:
+    image: selenium/standalone-chrome:3.141.59-dubnium
+    ports:
+      - 4444:4444
 volumes:
   db-data:
     driver: local
