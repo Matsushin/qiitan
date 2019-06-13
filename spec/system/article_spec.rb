@@ -1,22 +1,29 @@
 require 'rails_helper'
 
 describe '投稿記事管理機能', type: :system do
-  describe '投稿記事削除機能' do
-    before do
-      user_a = FactoryBot.create(:user)
-      FactoryBot.create(:article, title: '最初の記事', user: user_a)
-    end
+  before do
+    @user = User.create(
+      username: "test",
+      email: "test@example.com",
+      password: "password"
+    )
+  end
+  it '投稿削除テスト' do
+    visit new_user_session_path
+    fill_in 'user_email', with: @user.email
+    fill_in 'user_password', with: @user.password
+    click_button "Qiitan にログイン"
 
-    context 'ユーザーがログインしている時' do
-      before do
-        visit new_user_session_path
-        fill_in 'メールアドレス'
-        fill_in 'パスワード'
-      end
-    end
+    expect {
+      visit new_article_path
+      fill_in "article_title", with: "Test"
+      fill_in "article_body", with: "body"
+      click_button "Qiitanに投稿"
+      expect(page).to have_content 'Test'
+      click_link "Test"
+      click_button "削除する"
+      page.accept_confirm '削除してもよろしいですか？？'
 
-    it 'ユーザーAが作成した記事が表示される' do
-      expect(page).to have_content '最初の記事'
-    end
+      expect(page).to have_no_content "Test"}
   end
 end
