@@ -37,6 +37,7 @@ class ArticlesController < ApplicationController
       redirect_to root_path, notice: t('common.flash.deleted')
     else
       flash.now[:alert] = @article.errors.full_messages.join('。')
+      render :show
     end
   end
 
