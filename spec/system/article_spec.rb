@@ -13,7 +13,6 @@ describe '投稿記事管理機能', type: :system do
     fill_in 'user_email', with: @user.email
     fill_in 'user_password', with: @user.password
     click_button "Qiitan にログイン"
-
     expect {
       visit new_article_path
       fill_in "article_title", with: "Test"
@@ -23,7 +22,6 @@ describe '投稿記事管理機能', type: :system do
       click_link "Test"
       click_button "削除する"
       page.accept_confirm '削除してもよろしいですか？？'
-
       expect(page).to have_no_content "Test"}
   end
 end

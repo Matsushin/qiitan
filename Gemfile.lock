@@ -513,10 +513,6 @@ GEM
       activemodel (>= 5.0)
       bindex (>= 0.4.0)
       railties (>= 5.0)
-    webdrivers (3.9.4)
-      nokogiri (~> 1.6)
-      rubyzip (~> 1.0)
-      selenium-webdriver (~> 3.0)
     websocket-driver (0.6.5)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.3)
@@ -534,7 +530,7 @@ DEPENDENCIES
   bootstrap-sass
   bullet
   byebug
-  capybara (~> 2.13)
+  capybara
   carrierwave
   chromedriver-helper
   coffee-rails (~> 4.2)
@@ -580,7 +576,6 @@ DEPENDENCIES
   spring-watcher-listen (~> 2.0.0)
   uglifier (>= 1.3.0)
   web-console (>= 3.3.0)
-  webdrivers (~> 3.2)
 
 BUNDLED WITH
    1.17.3

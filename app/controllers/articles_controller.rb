@@ -33,12 +33,9 @@ class ArticlesController < ApplicationController
   end
 
   def destroy
-    if @article.destroy
-       flash[:notice] = "投稿が削除されました"
-       redirect_to root_path
-    else
-      flash[:alert] = "投稿の削除に失敗しました"
-    end
+    redirect_to root_path, notice: t('common.flash.deleted') if @article.destroy
+  else
+    flash.now[:alert] = @article.errors.full_messages.join('。')
   end
 
   def preview; end
