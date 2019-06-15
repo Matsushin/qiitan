@@ -1,16 +1,8 @@
-require 'selenium-webdriver'
-require 'capybara/rspec'
+Capybara.server_host = Socket.ip_address_list.detect{|addr| addr.ipv4_private?}.ip_address
+Capybara.server_port = 3000
 
-Capybara.configure do |capybara_config|
-  capybara_config.default_driver = :selenium_chrome
-  capybara_config.default_max_wait_time = 10
+Capybara.register_driver :selenium_remote do |app|
+  url = "http://chrome:4444/wd/hub"
+  opts = { desired_capabilities: :chrome, browser: :remote, url: url }
+  driver = Capybara::Selenium::Driver.new(app, opts)
 end
-
-Capybara.register_driver :selenium_chrome do |app|
-  options = Selenium::WebDriver::Chrome::Options.new
-  options.add_argument('headless')
-  options.add_argument('--disable-gpu')
-  Capybara::Selenium::Driver.new(app, browser: :chrome, options: options)
-end
-
-Capybara.javascript_driver = :selenium_chrome

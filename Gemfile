@@ -62,9 +62,9 @@ group :test do
   gem 'faker'
   gem 'capybara'
   gem 'database_cleaner'
-  gem 'selenium-webdriver'
-  gem 'chromedriver-helper'
   gem 'email_spec'
   gem 'rspec_junit_formatter'
   gem 'simplecov', require: false
+  gem 'selenium-webdriver'
+  gem 'chromedriver-helper'
 end
