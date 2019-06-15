@@ -17,11 +17,7 @@ class ApplicationController < ActionController::Base
   private
 
   def authorize_basic
-<<<<<<< HEAD
     return unless %w(production staging).include?(Rails.env)
-=======
-    return unless Rails.env.production? || Rails.env.staging?
->>>>>>> 4c33a705bc3d70911d383676d646d6b26839fd15
     authenticate_or_request_with_http_basic('BA') do |name, password|
       name == ENV['BASIC_NAME'] && password == ENV['BASIC_PASSWORD']
     end
