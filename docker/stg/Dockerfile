@@ -61,6 +61,6 @@ ADD . $APP_HOME
 EXPOSE 3000
 
 RUN npm install
-ENTRYPOINT ["./docker-entrypoint.sh"]
+ENTRYPOINT ["source", "./docker-entrypoint.sh"]
 RUN env RAILS_ENV=${RAILS_ENV} SECRET_KEY_BASE=${SECRET_KEY_BASE}  bundle exec rake assets:precompile
 CMD ["bundle", "exec", "rails", "s", "puma", "-b", "0.0.0.0", "-p", "3000", "-e", "${RAILS_ENV}"]
