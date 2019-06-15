@@ -33,7 +33,7 @@ class ArticlesController < ApplicationController
   end
 
   def destroy
-    if @article.destroy
+    if @article.destroy!
       redirect_to root_path, notice: t('common.flash.deleted')
     else
       flash.now[:alert] = @article.errors.full_messages.join('。')
