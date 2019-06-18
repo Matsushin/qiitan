@@ -115,6 +115,4 @@ workflows:
           filters:
             branches:
               only:
-                - DEPLOY/test
                 - develop
-                - fixes/circleci-deploy-failed
