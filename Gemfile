@@ -35,6 +35,7 @@ gem 'rack-dev-mark'
 gem 'foreman'
 gem 'sentry-raven'
 gem 'newrelic_rpm'
+gem 'ransack'
 
 source 'https://rails-assets.org' do
   gem 'rails-assets-toastr'

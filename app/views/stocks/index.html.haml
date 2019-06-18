@@ -1,6 +1,16 @@
 .row
-  .col-md-8
+  .col-sm-8
     %h2.page__title
       = icon('fas', 'folder-open')
       ストック一覧
     = render 'shared/articles/index', articles: @articles
+
+  .stock_search
+    %h3.page_title
+      ストック内検索
+    - @q ||= Article.none.search(params[:q])
+    = search_form_for @q, url: stocks_path, html: { class: 'form-inline navigation__search-form', method: 'get' } do |f|
+      .input-group
+        = f.search_field :title_or_body_cont, class: 'form-control', placeholder: 'キーワードを入力'
+        %span.input-group-addon.fit-input
+          = icon('fas', 'search')
