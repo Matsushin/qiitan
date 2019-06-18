@@ -1,6 +1,6 @@
 Capybara.server_host = Socket.ip_address_list.detect{|addr| addr.ipv4_private?}.ip_address
 Capybara.server_port = 3000
-Capybara.javascript_driver = :selenium_chrome
+Capybara.javascript_driver = :selenium_chrome_headless
 
 Capybara.register_driver :selenium_remote do |app|
   url = "http://chrome:4444/wd/hub"
