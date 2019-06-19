@@ -25,14 +25,16 @@ describe '投稿記事管理機能', type: :system do
   end
 
   it "ストック検索テスト", js: true do
-    expect(current_path).to eq article_path(Article.last)
-    find(".article__item-stock-btn").click
-    visit stocks_path
-    within '.stock_search' do
-      find(".form-control").set("Test")
-      find(".form-control").click
+    using_wait_time(10) do
+      expect(current_path).to eq article_path(Article.last)
+      find(".article__item-stock-btn").click
+      visit stocks_path
+      within '.stock_search' do
+        find(".form-control").set("Test")
+        find(".form-control").click
+      end
+      expect(current_path).to eq stocks_path
+      expect(page).to have_content "Test"
     end
-    expect(current_path).to eq stocks_path
-    expect(page).to have_content "Test"
   end
 end

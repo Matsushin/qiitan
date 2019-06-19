@@ -2,7 +2,6 @@ require 'capybara/poltergeist'
 Capybara.javascript_driver = :poltergeist
 Capybara.server_host = Socket.ip_address_list.detect{|addr| addr.ipv4_private?}.ip_address
 Capybara.server_port = 3000
-Capybara.javascript_driver = :selenium_chrome
 
 
 Capybara.register_driver :selenium_remote do |app|
