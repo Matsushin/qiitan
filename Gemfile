@@ -67,4 +67,6 @@ group :test do
   gem 'rspec_junit_formatter'
   gem 'simplecov', require: false
   gem 'webdrivers'
+  gem 'poltergeist'
+  gem 'launchy', '~> 2.4.3'
 end
