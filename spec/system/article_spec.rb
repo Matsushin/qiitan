@@ -24,7 +24,7 @@ describe '投稿記事管理機能', type: :system do
     expect(Article.count).to be_zero
   end
 
-  scenario "ストック検索テスト", js: true do
+  it "ストック検索テスト", js: true do
     expect(current_path).to eq article_path(Article.last)
     find(".article__item-stock-btn").click
     visit stocks_path

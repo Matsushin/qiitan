@@ -66,6 +66,5 @@ group :test do
   gem 'email_spec'
   gem 'rspec_junit_formatter'
   gem 'simplecov', require: false
-  gem 'selenium-webdriver'
-  gem 'chromedriver-helper'
+  gem 'webdrivers'
 end
