@@ -1,4 +1,4 @@
-describe '投稿記事管理機能', type: :system do
+RSpec.feature 'Users', type: :system do
   let(:user) { create(:user, email: 'test@example.com', username: 'test_user', confirmed_at: Time.current) }
   before do
     user.password = "password"
@@ -24,7 +24,7 @@ describe '投稿記事管理機能', type: :system do
     expect(Article.count).to be_zero
   end
 
-  scenario "ストック検索テスト", js: true do
+  scenario "ストック検索テスト" do
     expect(current_path).to eq article_path(Article.last)
     find(".article__item-stock-btn").click
     visit stocks_path

@@ -1,45 +1,33 @@
-FROM ruby:2.5.1-alpine
+FROM node:11.13.0-stretch-slim as node
+FROM ruby:2.5.5-slim-stretch
 
-ENV LANG ja_JP.UTF-8
-ENV PAGER busybox less
+ENV LANG C.UTF-8
 
-RUN apk update && \
-    apk upgrade && \
-    apk add --update\
-    bash \
-    build-base \
-    curl-dev \
-    git \
-    libxml2-dev \
-    libxslt-dev \
-    linux-headers \
-    mysql-dev \
-    nodejs \
-    openssh \
-    ruby-dev \
-    ruby-json \
-    tzdata \
-    yaml \
-    yaml-dev \
-    zlib-dev \
-    imagemagick
+RUN apt-get update && apt-get install -yqq \
+        default-mysql-client-core \
+        default-libmysqlclient-dev \
+        imagemagick libmagickcore-dev libmagickwand-dev \
+        build-essential \
+        git \
+        curl \
+        openssh-client \
+        gnupg \
+        --no-install-recommends && \
+        rm -rf /var/lib/apt/lists/*
 
-RUN gem install bundler
-RUN gem update
+RUN curl -sS -o - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add - && \
+    echo "deb http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list && \
+    apt-get -yqq update && \
+    apt-get -yqq install google-chrome-stable \
+    --no-install-recommends && \
+    rm -rf /var/lib/apt/lists/*
 
-ENV APP_HOME /qiitan
-RUN mkdir $APP_HOME
-WORKDIR $APP_HOME
+COPY --from=node /opt/yarn-v* /opt/yarn
+COPY --from=node /usr/local/bin/node /usr/local/bin/
+RUN ln -s /opt/yarn/bin/yarn /usr/local/bin/yarn \
+    && ln -s /opt/yarn/bin/yarnpkg /usr/local/bin/yarnpkg
 
-ENV GEM_HOME=/bundle
+WORKDIR /app
 
-ADD Gemfile* $APP_HOME/
-
-ENV BUNDLE_GEMFILE=$APP_HOME/Gemfile \
-  BUNDLE_JOBS=2 \
-  BUNDLE_PATH=$GEM_HOME
-
-RUN bundle install --jobs 4
-ADD . $APP_HOME
-
-EXPOSE 3000
+COPY Gemfile.lock .
+RUN gem update --system && gem install bundler -v $(cat Gemfile.lock | tail -1 | tr -d " ")
