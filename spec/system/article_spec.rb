@@ -1,4 +1,4 @@
-RSpec.feature 'Users', type: :system do
+RSpec.feature 'Users', type: :system, skip: true do
   let(:user) { create(:user, email: 'test@example.com', username: 'test_user', confirmed_at: Time.current) }
   before do
     user.password = "password"
