@@ -1,4 +1,4 @@
-RSpec.feature 'Users', type: :system, skip: true do
+RSpec.feature 'Users', type: :system do
   let(:user) { create(:user, email: 'test@example.com', username: 'test_user', confirmed_at: Time.current) }
   before do
     user.password = "password"
@@ -28,6 +28,9 @@ RSpec.feature 'Users', type: :system, skip: true do
     expect(current_path).to eq article_path(Article.last)
     find(".article__item-stock-btn").click
     visit stocks_path
+    visit stocks_path
+    expect(page).to have_content "ストック一覧"
+    expect(page).to have_content "Test"
     within '.stock_search' do
       find(".form-control").set("Test")
       find(".form-control").click

@@ -35,6 +35,7 @@ feature 'Authorization' do
       expect(current_path).to eq article_path(article)
       find(".article__item-stock-btn").click
       visit stocks_path
+      expect(page).to have_content "ストック一覧"
       expect(page).to have_content "タイトル"
       within '.stock_search' do
         find(".form-control").set("タイトル")
