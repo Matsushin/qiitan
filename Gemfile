@@ -25,7 +25,7 @@ gem 'carrierwave'
 gem 'font-awesome-sass'
 gem 'gemoji'
 gem 'enumerize'
-gem 'fog'
+gem 'fog-aws'
 gem 'mini_magick'
 gem 'retryable'
 gem 'roboto'
@@ -66,5 +66,5 @@ group :test do
   gem 'rspec_junit_formatter'
   gem 'simplecov', require: false
   gem 'selenium-webdriver'
-  gem 'chromedriver-helper'
+  gem 'webdrivers'
 end

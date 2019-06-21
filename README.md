@@ -9,7 +9,7 @@ http://qiitan-prd.herokuapp.com/
 - パスワード： vdqXhqpuqieJ8kjCqgNYkvGP
 
 ### Version
-- ruby 2.5.1
+- ruby 2.5.5
 - rails 5.1.6
 - MySQL 5.7.22
 
