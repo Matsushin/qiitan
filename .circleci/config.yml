@@ -119,4 +119,5 @@ workflows:
           filters:
             branches:
               only:
+                - ci-test-0619
                 - develop

@@ -31,12 +31,9 @@ RUN apt-get update && apt-get install -y unzip && \
     --no-install-recommends && \
     rm -rf /var/lib/apt/lists/*
 
-COPY --from=node /opt/yarn-v* /opt/yarn
 COPY --from=node /usr/local/bin/node /usr/local/bin/
-RUN ln -s /opt/yarn/bin/yarn /usr/local/bin/yarn \
-    && ln -s /opt/yarn/bin/yarnpkg /usr/local/bin/yarnpkg
 
-WORKDIR /app
+WORKDIR /qiitan
 
 COPY Gemfile.lock .
 RUN gem update --system && gem install bundler -v $(cat Gemfile.lock | tail -1 | tr -d " ")

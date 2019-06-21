@@ -1,38 +1,31 @@
-FROM ruby:2.5.1-alpine
+FROM node:11.13.0-stretch-slim as node
+FROM ruby:2.5.5-slim-stretch
 
-ENV LANG ja_JP.UTF-8
-ENV PAGER busybox less
+ENV LANG C.UTF-8
 
-RUN apk update && \
-    apk upgrade && \
-    apk add --update\
-    bash \
-    build-base \
-    curl-dev \
-    git \
-    libxml2-dev \
-    libxslt-dev \
-    linux-headers \
-    mysql-dev \
-    nodejs \
-    openssh \
-    ruby-dev \
-    ruby-json \
-    tzdata \
-    yaml \
-    yaml-dev \
-    zlib-dev \
-    imagemagick \
-    jq \
-    python3 \
-    python3-dev
+RUN apt-get update && apt-get install -yqq \
+        default-mysql-client-core \
+        default-libmysqlclient-dev \
+        imagemagick libmagickcore-dev libmagickwand-dev \
+        build-essential \
+        git \
+        curl \
+        openssh-client \
+        gnupg \
+        wget \
+        jq \
+        python3-pip \
+        python3-setuptools \
+        --no-install-recommends && \
+        rm -rf /var/lib/apt/lists/*
 
 # Install the AWS CLI
 RUN pip3 install --upgrade pip
 RUN pip3 install awscli
 
-RUN gem install bundler
-RUN gem update
+COPY --from=node /usr/local/bin/node /usr/local/bin/
+
+WORKDIR /qiitan
 
 ARG RAILS_ENV=staging
 ARG RACK_ENV=staging
@@ -40,27 +33,22 @@ ARG SECRET_KEY_BASE
 ARG AWS_ACCESS_KEY_ID=''
 ARG AWS_SECRET_ACCESS_KEY=''
 
-ENV APP_HOME /qiitan
-RUN mkdir $APP_HOME
-WORKDIR $APP_HOME
+COPY Gemfile .
+COPY Gemfile.lock .
+RUN cat Gemfile.lock | tail -1 | tr -d " " > BUNDLER_VERSION
+RUN gem update --system && gem install bundler -v `cat BUNDLER_VERSION`
+RUN bundle install --without test development local --jobs=4
 
-ENV GEM_HOME=/bundle
+COPY config/application.rb config/boot.rb config/environment.rb config/database.yml config/secrets.yml config/
+COPY config/initializers/assets.rb config/initializers/
+COPY config/environments/ config/environments/
+COPY log/.keep log/
+COPY bin/ bin/
+COPY Rakefile .
+COPY docker-entrypoint.sh .
+COPY app/assets app/assets
+COPY . .
 
-ADD Gemfile* $APP_HOME/
-
-ENV BUNDLE_GEMFILE=$APP_HOME/Gemfile \
-  BUNDLE_JOBS=2 \
-  BUNDLE_PATH=$GEM_HOME
-
-RUN bundle config build.nokogiri --use-system-libraries && \
-    bundle config build.mysql2 --use-system-libraries && \
-    bundle install --jobs 20 --retry 5
-
-ADD . $APP_HOME
-
-EXPOSE 3000
-
-RUN npm install
 ENTRYPOINT ["./docker-entrypoint.sh"]
 RUN env RAILS_ENV=${RAILS_ENV} SECRET_KEY_BASE=${SECRET_KEY_BASE}  bundle exec rake assets:precompile
 CMD ["bundle", "exec", "rails", "s", "puma", "-b", "0.0.0.0", "-p", "3000", "-e", "${RAILS_ENV}"]
