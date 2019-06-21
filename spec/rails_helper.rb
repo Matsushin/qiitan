@@ -66,8 +66,8 @@ RSpec.configure do |config|
     driven_by :rack_test
   end
 
-  config.before(:each, type: :system, js: true) do
-    driven_by :selenium_remote
-    host! "http://#{Capybara.server_host}:#{Capybara.server_port}"
+  config.include Warden::Test::Helpers
+  config.before :suite do
+    Warden.test_mode!
   end
 end
