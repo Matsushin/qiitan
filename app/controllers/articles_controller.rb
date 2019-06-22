@@ -1,5 +1,5 @@
 class ArticlesController < ApplicationController
-  before_action :set_article, only: %i[show edit update]
+  before_action :set_article, only: %i[show edit update destroy]
 
   def new
     @article = current_user.articles.build
@@ -29,6 +29,15 @@ class ArticlesController < ApplicationController
       @article.errors.delete(:title)
       @article.errors.delete(:body)
       render :edit
+    end
+  end
+
+  def destroy
+    if @article.destroy!
+      redirect_to root_path, notice: t('common.flash.deleted')
+    else
+      flash.now[:alert] = @article.errors.full_messages.join('。')
+      render :show
     end
   end
 

@@ -63,4 +63,8 @@ Rails.application.configure do
     Bullet.rails_logger = true
     Bullet.add_footer   = true
   end
+
+  if Rails.env.development?
+    BetterErrors::Middleware.allow_ip! "0.0.0.0/0"
+  end
 end
