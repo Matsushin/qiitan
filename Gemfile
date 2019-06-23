@@ -25,7 +25,7 @@ gem 'carrierwave'
 gem 'font-awesome-sass'
 gem 'gemoji'
 gem 'enumerize'
-gem 'fog'
+gem 'fog-aws'
 gem 'mini_magick'
 gem 'retryable'
 gem 'roboto'
@@ -35,7 +35,6 @@ gem 'rack-dev-mark'
 gem 'foreman'
 gem 'sentry-raven'
 gem 'newrelic_rpm'
-gem 'ransack'
 
 source 'https://rails-assets.org' do
   gem 'rails-assets-toastr'
@@ -66,7 +65,6 @@ group :test do
   gem 'email_spec'
   gem 'rspec_junit_formatter'
   gem 'simplecov', require: false
+  gem 'selenium-webdriver'
   gem 'webdrivers'
-  gem 'poltergeist'
-  gem 'launchy', '~> 2.4.3'
 end
