@@ -1,7 +1,7 @@
 .row
   .col-sm-8.col-sm-offset-2
     .text-center
-      %h2 Qiitan にログイン
+      h2 Qiitan にログイン
     = simple_form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: 'form-section' }) do |f|
       .form-group
         = f.input :email, autofocus: true, autocomplete: :email, required: false

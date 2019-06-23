@@ -35,6 +35,8 @@ gem 'rack-dev-mark'
 gem 'foreman'
 gem 'sentry-raven'
 gem 'newrelic_rpm'
+gem 'haml2slim'
+gem 'slim-rails'
 
 source 'https://rails-assets.org' do
   gem 'rails-assets-toastr'

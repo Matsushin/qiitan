@@ -1,10 +1,10 @@
 .row
   .col-md-8
-    %h2.page__title
-      通知一覧
+    h2.page__title
+      | 通知一覧
     - if @notifications.blank?
       .alert.alert-warning
-        まだ通知はありません。
+        | まだ通知はありません。
     - else
       = render 'items', notifications: @notifications
       = paginate @notifications
