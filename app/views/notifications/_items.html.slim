@@ -1,5 +1,5 @@
 - widget ||= false
-.js-notification-unread  data: { unread: current_user.notifications.unread.count, url: read_all_notifications_path } 
+.js-notification-unread data-unread= current_user.notifications.unread.count data-url= read_all_notifications_path
 - notifications.includes(notifiable: %i[user article]).each do |notification|
   - notifiable = notification.notifiable
   - user = notifiable.user
@@ -10,9 +10,9 @@
     .notification__message
       span.bold= notifiable.user.username
       | があなたの投稿
-      span.bold「# notifiable.article.title.truncate(18) 」
+      span.bold「#{notifiable.article.title.truncate(18)}」
       | に
-      span.bold # notifiable.class == Like ? 'いいね' : 'コメント' 
+      span.bold #{notifiable.class == Like ? 'いいね' : 'コメント' }
       | しました。
       .notification__notified-at.text-muted
         = l notification.created_at, format: :long

@@ -16,12 +16,12 @@
         .article__body-panel
           .article__body-form-container
             = f.input :body, input_html: { class: 'js-article-body article__body-form' },
-                | placeholder: 'プログラミング知識をMarkdown記法で書いて共有しよう', label: false, wrapper: false
+                             placeholder: 'プログラミング知識をMarkdown記法で書いて共有しよう', label: false, wrapper: false
       .article__preview-container
         .article__preview-header
           p プレビュー
         .article__preview-panel
-          #js-article-preview.article__preview-section  data: { preview_url: preview_articles_path } 
+          #js-article-preview.article__preview-section data-preview-url=preview_articles_path
     .article__submit-container
       .pull-right
         = f.button :button, class: 'btn btn-primary btn', data: { disable_with: '送信中...' } do
