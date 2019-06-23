@@ -1,4 +1,5 @@
-p [# @comment.article.title ]にコメントがつきました。
+p
+  | [#{@comment.article.title}]にコメントがつきました。
 
 p ー
 = simple_format(h(@comment.body))

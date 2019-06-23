@@ -14,8 +14,8 @@
         br
         | Contributtion
     ul.nav.nav-tabs
-      li.nav-item  class: "#{liked_articles_request? ? '' : 'active'}" 
+      li.nav-item  class= "#{liked_articles_request? ? '' : 'active'}"
         = link_to '最近の投稿', user_path(current_user)
-      li.nav-item  class: "#{liked_articles_request? ? 'active' : ''}" 
+      li.nav-item  class= "#{liked_articles_request? ? 'active' : ''}"
         = link_to 'いいねした投稿', show_user_path(@user, liked: :liked)
     = render 'shared/articles/index', articles: @articles

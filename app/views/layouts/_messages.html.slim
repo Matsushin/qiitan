@@ -2,8 +2,6 @@
   - if message.is_a?(String) && !Rails.env.test?
     - case name.to_s
     - when 'notice'
-      javascript:
-        | toastr.success('#{message}');
+      javascript: toastr.success('#{message}');
     - when 'alert'
-      javascript:
-        | toastr.error('#{message}');
+      javascript: toastr.error('#{message}');
