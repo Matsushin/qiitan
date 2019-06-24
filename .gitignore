@@ -21,7 +21,6 @@
 .byebug_history
 /vendor/bundle/*
 .idea/*
-/vendor/bundler
 
 # Ignore coverage reports
 /coverage

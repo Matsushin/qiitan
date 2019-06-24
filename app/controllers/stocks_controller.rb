@@ -8,9 +8,9 @@ class StocksController < ApplicationController
                 .order(created_at: :desc)
                 .search(params[:q])
     @articles = @q.result.page(params[:page])
-    end
+  end
 
-    def create
+  def create
     @stock = current_user.stocks.build(article: @article)
     if @stock.save
       render :save

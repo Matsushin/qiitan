@@ -5,9 +5,8 @@
       ストック一覧
     = render 'shared/articles/index', articles: @articles
 
-  .stock_search
-    %h3.page_title
-      ストック内検索
+  .article__item-stock-search
+    %h3.stock-search-title ストック内検索
     - @q ||= Article.none.search(params[:q])
     = search_form_for @q, url: stocks_path, html: { class: 'form-inline navigation__search-form', method: 'get' } do |f|
       .input-group
