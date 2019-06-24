@@ -29,7 +29,7 @@ describe '投稿記事管理機能', type: :feature do
     find(".article__item-stock-btn").click
     expect(page).to have_selector ".article__item-stock-check"
     visit stocks_path
-    within '.stock_search' do
+    within '.article__item-stock-search' do
       find(".form-control").set("Test")
       find(".form-control").click
     end
