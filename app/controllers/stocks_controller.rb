@@ -2,13 +2,14 @@ class StocksController < ApplicationController
   before_action :set_article, only: %i[create destroy]
   before_action :set_stock, only: %i[destroy]
 
-  def index 
-    @articles = Article.where(id: current_user.stocks.select(:article_id))
-                       .includes(:user)
-                       .order(created_at: :desc)
-                       .page(params[:page])
+  def index
+    @q = Article.where(id: current_user.stocks.select(:article_id))
+                .includes(:user)
+                .order(created_at: :desc)
+                .search(params[:q])
+    @articles = @q.result.page(params[:page])
   end
-  
+
   def create
     @stock = current_user.stocks.build(article: @article)
     if @stock.save
