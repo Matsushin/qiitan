@@ -35,6 +35,7 @@ gem 'foreman'
 gem 'sentry-raven'
 gem 'newrelic_rpm'
 gem 'slim-rails'
+gem 'ddtrace'
 
 source 'https://rails-assets.org' do
   gem 'rails-assets-toastr'
