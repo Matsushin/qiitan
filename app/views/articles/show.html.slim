@@ -13,16 +13,16 @@
               .article__item-main-header-author-name
                 = link_to @article.user.username, user_path(@article.user)
             .article__item-main-header-author-time
-              %span
-                %time= l(@article.updated_at.to_date, format: :date_short)
-                に更新
+              span
+                time= l(@article.updated_at.to_date, format: :date_short)
+                | に更新
             - if @article.user == current_user
               .article__item-main-header-meta
                 .article_item-main-header-edit
                   = link_to icon('fas', 'pencil-alt', '編集する'), edit_article_path(@article)
                   = link_to icon('fas', 'trash-alt', '削除する'), article_path(@article), method: :delete,
-                    data: { confirm: "削除してもよろしいですか？" }
-          %h1.article__item-main-header-title= @article.title
+                                                                 data: { confirm: "削除してもよろしいですか？" }
+          h1.article__item-main-header-title= @article.title
         .article__item-main-body
           = markdown(@article.body)
     .article__item-option-area
@@ -32,7 +32,7 @@
   .comment__dummy-area
   .comment__main-area
     - @article.comments.includes(:user).order(:created_at).each do |comment|
-      .comment__wrapper.js-comment-wrapper{ id: "js-comment-#{comment.id}" }
+      .comment__wrapper.js-comment-wrapper id= "js-comment-#{comment.id}"
         .js-comment-content
           .comment__header
             .comment__header-creator
@@ -42,15 +42,15 @@
                 .comment__header-creator-username
                   = link_to comment.user.username, user_path(comment.user)
                 .comment__header-contribution
-                  %span.comment__header-contribution-count= Like.where(article: comment.user.articles).count
-                  %span.comment__header-contribution-unit Contribution
+                  span.comment__header-contribution-count= Like.where(article: comment.user.articles).count
+                  span.comment__header-contribution-unit Contribution
             .pull-right
               .text-muted= l(comment.created_at, format: :long)
               - if current_user == comment.user
                 .text-right.comment__header-edit-section
                   = link_to '編集', '#', class: 'js-comment-edit-link'
                   = link_to '削除', article_comment_path(@article, comment), remote: true, method: :delete,
-                                                                              data: { confirm: '削除してよろしいですか？' }
+                                                                             data: { confirm: '削除してよろしいですか？' }
           .comment__body-container
             .comment__body.js-comment-body
               = simple_format(h(comment.body))
@@ -62,7 +62,7 @@
               .comment__form-header-label コメントを投稿する
             = f.input :body, placeholder: 'コメントを入力してください', label: false, input_html: { rows: 5 }
             .pull-right
-              %button.btn.btn-default.js-comment-cancel-btn キャンセル
+              button.btn.btn-default.js-comment-cancel-btn.comment__cancel-btn キャンセル
               = f.submit '更新', class: 'btn btn-primary'
             .clearfix
     = simple_form_for(current_user.comments.build, url: article_comments_path(@article)) do |f|

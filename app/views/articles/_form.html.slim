@@ -4,24 +4,24 @@
       .article__status-label-container
         - if article.new_record?
           .article__status-label.article__status-label-unposted
-            未投稿
+            | 未投稿
         - else
           .article__status-label.article__status-label-posted
-            投稿済み
+            | 投稿済み
       = f.input :title, input_html: { class: 'form-control article__title-form' }, placeholder: 'タイトル', label: false
     .article__markdown-container
       .article__body-container
         .article__body-header
-          %p= Article.human_attribute_name :body
+          p= Article.human_attribute_name :body
         .article__body-panel
           .article__body-form-container
             = f.input :body, input_html: { class: 'js-article-body article__body-form' },
-                placeholder: 'プログラミング知識をMarkdown記法で書いて共有しよう', label: false, wrapper: false
+                             placeholder: 'プログラミング知識をMarkdown記法で書いて共有しよう', label: false, wrapper: false
       .article__preview-container
         .article__preview-header
-          %p プレビュー
+          p プレビュー
         .article__preview-panel
-          #js-article-preview.article__preview-section{ data: { preview_url: preview_articles_path }}
+          #js-article-preview.article__preview-section data-preview-url=preview_articles_path
     .article__submit-container
       .pull-right
         = f.button :button, class: 'btn btn-primary btn', data: { disable_with: '送信中...' } do
