@@ -1,8 +1,8 @@
 .row
   .col-sm-8.col-sm-offset-2
     .text-center
-      %h2 Qiitanへようこそ
-      %p 新規登録して利用を開始しましょう。
+      h2 Qiitanへようこそ
+      p 新規登録して利用を開始しましょう。
     = simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: 'form-section' }) do |f|
       = f.error_notification
       .form-group

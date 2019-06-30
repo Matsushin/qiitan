@@ -6,9 +6,9 @@
       .article__items-body
         .article__items-info
           = link_to article.user.username, user_path(article.user)
-          が
+          | が
           = l article.created_at.to_date
-          に投稿
+          | に投稿
         .article__items-title
           = link_to article.title, article_path(article)
       .article__items-status
@@ -20,4 +20,4 @@
             = link_to article.comments.count, article_path(article)
   = paginate articles
 - else
-  %p 記事が1つもありません。
+  p 記事が1つもありません。
