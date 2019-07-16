@@ -3,6 +3,7 @@ class LikesController < ApplicationController
   before_action :set_like, only: %i[destroy]
 
   def create
+    return if @article.user_id == current_user.id
     @like = current_user.likes.build(article: @article)
     @like.notifications.build(user: @article.user)
     if @like.save
