@@ -47,6 +47,11 @@ jobs:
             - gem-cache-{{ checksum "Gemfile.lock" }}
             - gem-cache-
       - run:
+          name: default mysql client install
+          command: |
+            sudo apt update
+            sudo apt-get install default-mysql-client
+      - run:
           name: bundle install
           command: bundle check --path=vendor/bundle || bundle install --path=vendor/bundle --jobs=4 --retry=3
       # bundle installされたものcacheする
