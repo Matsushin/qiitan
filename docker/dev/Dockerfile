@@ -1,5 +1,5 @@
 FROM node:11.13.0-stretch-slim as node
-FROM ruby:2.5.5-slim-stretch
+FROM ruby:2.6.3-slim-stretch
 
 ENV LANG C.UTF-8
 
