@@ -5,6 +5,5 @@
       = icon('fas', 'check')
   - else
     = link_to article.likes.count, article_likes_path(article), method: :post, remote: true, class: 'article__item-like-count'
-    / = link_to article_likes_path(article), method: :post, remote: true, class: 'article__item-like-btn' do
     = link_to article_likes_path(article), method: :post, remote: true, tabindex: -1, class: "article__item-like-btn #{'article__like-not-allowed' if current_user.id == article.user_id}" do
       = icon('fas', 'thumbs-up')
