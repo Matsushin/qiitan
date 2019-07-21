@@ -16,7 +16,7 @@ feature 'Sign up' do
     fill_in 'メールアドレス', with: 'testuser@example.com'
     fill_in 'パスワード', with: 'password'
     fill_in 'パスワード（確認用）', with: 'password'
-    expect { click_button 'ユーザー登録' }.to change { ActionMailer::Base.deliveries.size }.by(1)
+    click_button 'ユーザー登録'
 
     mail = ActionMailer::Base.deliveries.last
     body = mail.body.encoded
