@@ -13,4 +13,6 @@ class User < ApplicationRecord
 
   validates :username, presence: true, uniqueness: true, format: { with: /\A[0-9a-zA-Z@_-]{6,}\z/ }
   validates :email, presence: true, uniqueness: true
+
+  acts_as_paranoid
 end
