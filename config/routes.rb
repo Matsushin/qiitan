@@ -13,6 +13,11 @@ Rails.application.routes.draw do
 
   devise_for :users
 
+  devise_scope :user do
+    post 'users/edit/confirm_destroy' => 'users/registrations#confirm_destroy'
+    delete 'users/edit/complete_destroy' => 'users/registrations#complete_destroy'
+  end
+
   resources :users, only: %i[show] do
     member do
       get ':liked', to: 'users#show', as: :show
