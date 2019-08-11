@@ -10,20 +10,18 @@ feature 'Delete Account' do
   end
 
   scenario '正しいパスワードを入力すると、アカウントを削除できる' do
-    puts "------退会前#{@user.inspect}---------" # デバッグ用
     fill_in 'パスワード', with: 'password'
     click_button '退会する'
 
     expect(page).to have_content '退会完了'
-    puts "------退会後#{@user.inspect}---------"
-    expect(@user.deleted_at).not_to eq nil # userのdeleted_atがnullではなくなっていること
+    expect(@user.reload.deleted_at).not_to eq nil
   end
 
   scenario '誤ったパスワードを入力すると、現在と同じページにリダイレクトする' do
     fill_in 'パスワード', with: 'incorrect'
     click_button '退会する'
-    expect(page).to have_content 'パスワードが間違っています。'
 
-    # userのdeleted_atがnullであること
+    expect(page).to have_content 'パスワードが間違っています。'
+    expect(@user.reload.deleted_at).to eq nil
   end
 end
