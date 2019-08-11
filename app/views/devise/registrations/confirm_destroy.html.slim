@@ -6,23 +6,27 @@
     p= "退会処理を行うと、Qiitanでの活動内容（投稿したアイテム、ストックなど）が全て削除されます。"
     b この処理は取り消しできません。
 
+    - if flash.alert.present?
+      .alert.alert-danger
+        = flash.alert
+
     = form_with model: @user, url: users_edit_complete_destroy_path, method: :delete, class: "form-horizontal", local: true do |f|
       .form-group
         .col-sm-2.control-label
           = f.label :username
         .col-sm-6
-          = image_tag @user.profile_image.thumb.url, class: 'user__small-icon'
-          = link_to @user.username, user_path(@user)
+          .form-control-static
+            = image_tag @user.profile_image.thumb.url, class: 'user__small-icon'
+            = link_to @user.username, user_path(@user)
 
       .form-group
         .col-sm-2.control-label
-          = f.label :password
-          / b :
+          = f.label :password, "パスワード:"
         .col-sm-6
-          = f.password_field :password, autocomplete: "password", class: 'form-control fit-input long'
+          = f.password_field :password, autocomplete: "password", class: 'form-control fit-input long', id: 'user_password'
 
-      .col-sm-6.col-sm-offset-2
-        = f.submit "退会する", class: 'btn btn-danger'
+      .form-group
+        .col-sm-6.col-sm-offset-2
+          = f.submit "退会する", class: 'btn btn-danger'
 
-    = link_to "キャンセル", edit_user_registration_path
-
+    = link_to "キャンセル", edit_user_registration_path, class: 'btn btn-link'
