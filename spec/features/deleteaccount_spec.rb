@@ -1,10 +1,10 @@
 require 'rails_helper'
 
 feature 'Delete Account' do
+  let(:user) { create(:user, email: 'yamada@qiitan.jp', username: 'yamada', confirmed_at: Time.current) }
   background do
-    @user = create(:user, email: 'yamada@qiitan.jp', username: 'yamada', confirmed_at: Time.current)
-    login_as @user, scope: :user
-    visit edit_user_registration_path(@user)
+    login_as user, scope: :user
+    visit edit_user_registration_path(user)
     click_button 'アカウントを削除する'
     expect(page).to have_content '退会する'
   end
@@ -14,7 +14,7 @@ feature 'Delete Account' do
     click_button '退会する'
 
     expect(page).to have_content '退会完了'
-    expect(@user.reload.deleted_at).not_to eq nil
+    expect(user.reload.deleted_at).not_to eq nil
   end
 
   scenario '誤ったパスワードを入力すると、現在と同じページにリダイレクトする' do
@@ -22,6 +22,6 @@ feature 'Delete Account' do
     click_button '退会する'
 
     expect(page).to have_content 'パスワードが間違っています。'
-    expect(@user.reload.deleted_at).to eq nil
+    expect(user.reload.deleted_at).to eq nil
   end
 end
