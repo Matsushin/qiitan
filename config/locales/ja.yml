@@ -4,6 +4,8 @@ ja:
       article:
         title: タイトル
         body: 本文
+      user:
+        password: "パスワード:"
     errors:
       messages:
         record_invalid: "バリデーションに失敗しました: %{errors}"
