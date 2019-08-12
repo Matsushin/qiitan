@@ -10,7 +10,7 @@
       .alert.alert-danger
         = flash.alert
 
-    = form_with model: @user, url: users_edit_complete_destroy_path, method: :delete, class: "form-horizontal", local: true do |f|
+    = form_with model: @user, url: users_complete_destroy_path, method: :delete, class: "form-horizontal", local: true do |f|
       .form-group
         .col-sm-2.control-label
           = f.label :username

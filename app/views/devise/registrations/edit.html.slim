@@ -24,6 +24,6 @@ h2= t('.title')
     = icon 'fas', 'trash-alt'
     b  アカウント削除
   p.text-muted 一度アカウントを削除すると、二度と元に戻せません。十分ご注意ください。
-  = button_to "アカウントを削除する", users_edit_confirm_destroy_path, method: :get, class: 'btn btn-danger'
+  = button_to "アカウントを削除する", users_confirm_destroy_path, method: :get, class: 'btn btn-danger'
 
 
