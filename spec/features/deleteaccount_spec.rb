@@ -18,7 +18,7 @@ feature 'Delete Account' do
   end
 
   scenario '誤ったパスワードを入力すると、現在と同じページにリダイレクトする' do
-    fill_in 'パスワード:', with: 'incorrect'
+    fill_in 'パスワード', with: 'incorrect'
     click_button '退会する'
 
     expect(page).to have_content 'パスワードが間違っています。'
