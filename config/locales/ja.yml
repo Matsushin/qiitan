@@ -5,7 +5,7 @@ ja:
         title: タイトル
         body: 本文
       user:
-        password: "パスワード:"
+        password: "パスワード"
     errors:
       messages:
         record_invalid: "バリデーションに失敗しました: %{errors}"
