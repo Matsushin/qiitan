@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   devise_scope :user do
     get 'users/confirm_destroy' => 'users#confirm_destroy'
     delete 'users/complete_destroy' => 'users#complete_destroy'
+    get 'users/completed_destroy' => 'users#completed_destroy'
   end
 
   resources :users, only: %i[show] do
