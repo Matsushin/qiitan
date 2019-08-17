@@ -1,0 +1,15 @@
+.row
+  .col-md-8
+    h2.page__title
+      = icon('fas', 'search')
+      | 検索結果
+    = search_form_for @q, url: search_index_path, html: {class: 'search__search-form', method: 'get'} do |f|
+      .form-inline
+        = f.search_field :title_or_body_cont, class: 'form-control fit-input long', placeholder: 'キーワードを入力'
+        = f.submit '検索', class: 'btn btn-primary search__search-btn'
+    ul.nav.nav-tabs
+      li.nav-item class= "#{params[:stocked].present? ? '' : 'active'}"
+        = link_to 'すべて', search_index_path(q: @filter_params)
+      li.nav-item class= "#{params[:stocked].present? ? 'active' : ''}"
+        = link_to 'ストック済み', search_index_path(q: @filter_params, stocked: 1)
+    = render 'shared/articles/index', articles: @articles

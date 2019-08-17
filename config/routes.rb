@@ -26,6 +26,7 @@ Rails.application.routes.draw do
   end
 
   resources :stocks, only: %i[index]
+  resources :search, only: %i[index]
   resources :notifications, only: %i(index) do
     collection do
       patch :read_all, format: :js

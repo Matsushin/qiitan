@@ -30,10 +30,9 @@ describe '投稿記事管理機能', type: :feature do
     expect(page).to have_selector ".article__item-stock-check"
     visit stocks_path
     within '.article__item-stock-search' do
-      find(".form-control").set("Test")
-      find(".form-control").click
+      fill_in "q[title_or_body_cont]", with: "Test" + "\n"
     end
-    expect(current_path).to eq stocks_path
+    expect(current_path).to eq search_index_path
     expect(page).to have_content "Test"
   end
 end

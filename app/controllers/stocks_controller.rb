@@ -3,11 +3,10 @@ class StocksController < ApplicationController
   before_action :set_stock, only: %i[destroy]
 
   def index
-    @q = Article.where(id: current_user.stocks.select(:article_id))
-                .includes(:user)
-                .order(created_at: :desc)
-                .search(params[:q])
-    @articles = @q.result.page(params[:page])
+    @articles = Article.where(id: current_user.stocks.select(:article_id))
+                       .includes(:user)
+                       .order(created_at: :desc)
+                       .page(params[:page])
   end
 
   def create
