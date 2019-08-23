@@ -7,8 +7,8 @@
 
   .article__item-stock-search
     h3.article__item-stock-search-title ストック内検索
-    - @q ||= Article.none.search(params[:q])
-    = search_form_for @q, url: stocks_path, html: { class: 'form-inline navigation__search-form', method: 'get' } do |f|
+    = search_form_for Article.none.search, url: search_index_path, html: { class: 'form-inline navigation__search-form', method: 'get' } do |f|
+      = hidden_field_tag :stocked, 1
       .input-group
         = f.search_field :title_or_body_cont, class: 'form-control', placeholder: 'キーワードを入力'
         span.input-group-addon.fit-input

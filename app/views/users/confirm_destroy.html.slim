@@ -1,0 +1,32 @@
+.row
+  .col-sm-8.col-sm-offset-2
+    h2 退会する
+    hr
+
+    p 退会処理を行うと、Qiitanでの活動内容（投稿したアイテム、ストックなど）が全て削除されます。
+    b この処理は取り消しできません。
+
+    - if flash.alert.present?
+      .alert.alert-danger
+        = flash.alert
+
+    = form_with model: @user, url: users_complete_destroy_path, method: :delete, class: "form-horizontal", local: true do |f|
+      .form-group
+        .col-sm-2.control-label
+          = f.label :username
+        .col-sm-6
+          .form-control-static
+            = image_tag @user.profile_image.thumb.url, class: 'user__small-icon'
+            = link_to @user.username, user_path(@user)
+
+      .form-group
+        .col-sm-2.control-label
+          = f.label :password
+        .col-sm-6
+          = f.password_field :password, autocomplete: "password", class: 'form-control fit-input long', id: 'user_password'
+
+      .form-group
+        .col-sm-6.col-sm-offset-2
+          = f.submit "退会する", class: 'btn btn-danger'
+
+    = link_to "キャンセル", edit_user_registration_path, class: 'btn btn-link'

@@ -13,6 +13,12 @@ Rails.application.routes.draw do
 
   devise_for :users
 
+  devise_scope :user do
+    get 'users/confirm_destroy' => 'users#confirm_destroy'
+    delete 'users/complete_destroy' => 'users#complete_destroy'
+    get 'users/completed_destroy' => 'users#completed_destroy'
+  end
+
   resources :users, only: %i[show] do
     member do
       get ':liked', to: 'users#show', as: :show
@@ -20,6 +26,7 @@ Rails.application.routes.draw do
   end
 
   resources :stocks, only: %i[index]
+  resources :search, only: %i[index]
   resources :notifications, only: %i(index) do
     collection do
       patch :read_all, format: :js

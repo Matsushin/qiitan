@@ -17,3 +17,13 @@ h2= t('.title')
   .form-group
     = f.submit t('.update'), class: 'btn btn-primary'
     = link_to 'キャンセル', :back, class: 'btn btn-default user__cancel-btn'
+
+.form-section
+  hr
+  p
+    = icon 'fas', 'trash-alt'
+    b  アカウント削除
+  p.text-muted 一度アカウントを削除すると、二度と元に戻せません。十分ご注意ください。
+  = button_to "アカウントを削除する", users_confirm_destroy_path, method: :get, class: 'btn btn-danger'
+
+
