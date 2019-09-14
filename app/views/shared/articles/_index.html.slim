@@ -17,7 +17,7 @@
         - if article.comments.exists?
           .div
             = icon 'far', 'comment'
-            = link_to article.comments.count, article_path(article)
+            = link_to article.comments.count, article_path(article), class: "article__items-comment"
   = paginate articles
 - else
   p 記事が1つもありません。
