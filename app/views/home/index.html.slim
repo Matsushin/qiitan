@@ -4,3 +4,19 @@
       = icon('far', 'file-alt')
       | すべての投稿
     = render 'shared/articles/index', articles: @articles
+  .col-md-4
+    .row.user_window
+      .col-md-2.align-self-center
+        = image_tag current_user.profile_image.thumb.url, class: 'media__image thumb thumb-m'
+      .col-md-10
+        =link_to current_user.username, user_path(current_user), class: 'h4'
+    .row.user_window__activity-stats
+      .col-md-6.user_window__activity-stat
+        =link_to user_path(current_user), class: 'user_window__activity-stat_count'
+          = current_user.articles.count
+        br
+        | Items
+      .col-md-6.user_window__activity-stat
+        span.user_window__activity-stat_count= Like.where(article: current_user.articles).count
+        br
+        | Contributtion
