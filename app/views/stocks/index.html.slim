@@ -1,15 +1,18 @@
 .row
-  .col-md-8
-    h2.page__title
-      = icon('fas', 'folder-open')
-      | ストック一覧
-    = render 'shared/articles/index', articles: @articles
-
-  .article__item-stock-search
+  .article__item-stock-search.col-md-4
+    .page__title__stock
+      h2
+        = icon('fas', 'folder-open')
+        | ストック一覧
+      h5
+        | あなたがストックした記事の一覧です。
     h3.article__item-stock-search-title ストック内検索
-    = search_form_for Article.none.search, url: search_index_path, html: { class: 'form-inline navigation__search-form', method: 'get' } do |f|
+    = search_form_for Article.none.search, url: search_index_path, html: { class: 'form-inline navigation__search-form__stock', method: 'get' } do |f|
       = hidden_field_tag :stocked, 1
       .input-group
         = f.search_field :title_or_body_cont, class: 'form-control', placeholder: 'キーワードを入力'
         span.input-group-addon.fit-input
           = icon('fas', 'search')
+
+  .col-md-8.article__wrapper
+    = render 'shared/articles/index', articles: @articles
