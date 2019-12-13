@@ -17,5 +17,11 @@ RSpec.describe Article do
       let(:aritcle) { build(:article, user: user, title: '記事タイトル', body: '記事本文') }
       it { expect(aritcle).to be_valid }
     end
+
+    context 'タイトルが255文字以下の場合' do
+      let(:aritcle) { build(:article, user: user, title: 'a'*255, body: '記事本文') }
+      it { expect(aritcle).to_not be_valid }
+    end
+
   end
 end
