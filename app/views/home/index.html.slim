@@ -12,7 +12,7 @@
         =link_to current_user.username, user_path(current_user), class: 'h4'
     .row.user_window__activity-stats
       .col-md-6.user_window__activity-stat
-        =link_to user_path(current_user), class: 'user_window__activity-stat_count'
+        =link_to user_path(current_user), class: 'user_window__activity-stat_count a'
           = current_user.articles.count
         br
         | Items
