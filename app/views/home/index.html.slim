@@ -6,13 +6,12 @@
     = render 'shared/articles/index', articles: @articles
   .col-md-4
     .row.d-flex.home__user-container
-      .col-md-2.
+      .col-md-2
         = image_tag current_user.profile_image.thumb.url, class: 'media__image thumb thumb-m'
       .col-md-10
         = link_to current_user.username, user_path(current_user), class: 'h4 user-name'
     .row.home__user-container-stats
       .col-md-6.home__user-container-stat
-
         = link_to current_user.articles.count, user_path(current_user), class: 'home__user-container-count articles-count'
         br
         | Items
