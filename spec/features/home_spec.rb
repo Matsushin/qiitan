@@ -21,15 +21,15 @@ feature 'Home' do
     scenario 'HOME画面の自分の「ユーザー名」からユーザー詳細画面に遷移できる', js: true do
       visit root_path
       expect(page).to have_content 'Items'
-      find(".user-name").click
-      expect(page).to have_content "記事タイトル1 home_spec確認"
+      find(".home__user-name").click
+      expect(current_path).to eq user_path(user)
     end
 
     scenario 'HOME画面の自分の「投稿記事数」からユーザー詳細画面に遷移できる', js: true do
       visit root_path
       expect(page).to have_content 'Items'
       find(".articles-count").click
-      expect(page).to have_content "記事タイトル1 home_spec確認"
+      expect(current_path).to eq user_path(user)
     end
   end
 end
