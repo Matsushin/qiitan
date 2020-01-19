@@ -5,7 +5,7 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
-gem 'rails', '~> 5.1.6'
+gem 'rails', '~> 6.0'
 gem 'mysql2', '>= 0.3.18', '< 0.6.0'
 gem 'puma', '~> 3.7'
 gem 'sass-rails', '~> 5.0'
@@ -37,6 +37,7 @@ gem 'newrelic_rpm'
 gem 'slim-rails'
 gem 'ddtrace'
 gem 'paranoia'
+gem 'webpacker', '~> 4.0'
 
 source 'https://rails-assets.org' do
   gem 'rails-assets-toastr'
