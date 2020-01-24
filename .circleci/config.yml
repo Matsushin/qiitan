@@ -7,7 +7,7 @@ jobs:
   build_and_test:
     docker:
       # specify the version you desire here
-      - image: circleci/ruby:2.6.0-node-browsers
+      - image: circleci/ruby:2.6.3-node-browsers
         environment:
           RAILS_ENV: test
           DATABASE_HOSTNAME: '127.0.0.1'
@@ -44,8 +44,8 @@ jobs:
             sudo dpkg -i google-chrome.deb
       - restore_cache:
           keys:
-            - gem-cache-{{ checksum "Gemfile.lock" }}
-            - gem-cache-
+            - gem-cache-v1-{{ checksum "Gemfile.lock" }}
+            - gem-cache-v1-
       - run:
           name: default mysql client install
           command: |
@@ -56,7 +56,7 @@ jobs:
           command: bundle check --path=vendor/bundle || bundle install --path=vendor/bundle --jobs=4 --retry=3
       # bundle installされたものcacheする
       - save_cache:
-          key: gem-cache-{{ checksum "Gemfile.lock" }}
+          key: gem-cache-v1-{{ checksum "Gemfile.lock" }}
           paths:
             - vendor/bundle
 
