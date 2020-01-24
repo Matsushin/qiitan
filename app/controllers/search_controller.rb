@@ -9,7 +9,7 @@ class SearchController < ApplicationController
 
     @q = articles.includes(:user)
                  .order(created_at: :desc)
-                 .search(params[:q])
+                 .ransack(params[:q])
     @articles = @q.result.page(params[:page])
     @filter_params = filter_params
   end

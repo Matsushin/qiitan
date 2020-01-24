@@ -11,8 +11,8 @@ class User < ApplicationRecord
   has_many :comments
   has_many :notifications
 
-  validates :username, presence: true, uniqueness: true, format: { with: /\A[0-9a-zA-Z@_-]{6,}\z/ }
-  validates :email, presence: true, uniqueness: true
+  validates :username, presence: true, uniqueness: { case_sensitive: true }, format: { with: /\A[0-9a-zA-Z@_-]{6,}\z/ }
+  validates :email, presence: true, uniqueness: { case_sensitive: true }
 
   acts_as_paranoid
 end
