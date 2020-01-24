@@ -13,8 +13,12 @@ RUN apt-get update && apt-get install -yqq \
         openssh-client \
         gnupg \
         wget \
+        apt-transport-https \
         --no-install-recommends && \
         rm -rf /var/lib/apt/lists/*
+
+RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - \
+    && echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
 
 RUN apt-get update && apt-get install -y unzip && \
     CHROME_DRIVER_VERSION=`curl -sS chromedriver.storage.googleapis.com/LATEST_RELEASE` && \
@@ -27,7 +31,7 @@ RUN apt-get update && apt-get install -y unzip && \
     curl -sS -o - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add - && \
     echo "deb http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list && \
     apt-get -yqq update && \
-    apt-get -yqq install google-chrome-stable \
+    apt-get -yqq install google-chrome-stable yarn \
     --no-install-recommends && \
     rm -rf /var/lib/apt/lists/*
 
