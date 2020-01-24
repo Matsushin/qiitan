@@ -7,7 +7,7 @@ jobs:
   build_and_test:
     docker:
       # specify the version you desire here
-      - image: circleci/ruby:2.6.3-node-browsers
+      - image: circleci/ruby:2.6.0-node-browsers
         environment:
           RAILS_ENV: test
           DATABASE_HOSTNAME: '127.0.0.1'
