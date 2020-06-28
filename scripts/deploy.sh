@@ -23,6 +23,6 @@ aws ecs run-task \
 
 ./scripts/ecs-deploy \
   --cluster qiitan-cluster-stg \
-  --service-name qiitan-service-stg-20200124 \
+  --service-name qiitan-service-stg \
   --image $AWS_ACCOUNT_ID.dkr.ecr.ap-northeast-1.amazonaws.com/qiitan/stg:latest \
   --timeout 600
