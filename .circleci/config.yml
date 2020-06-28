@@ -39,7 +39,8 @@ jobs:
       - run:
           name: Install Latest Google Chrome
           command: |
-            sudo apt-get install libappindicator3-1
+            sudo apt update
+            sudo apt-get install libappindicator3-1 libgbm1
             sudo curl -L -o google-chrome.deb https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
             sudo dpkg -i google-chrome.deb
       - restore_cache:
@@ -49,7 +50,6 @@ jobs:
       - run:
           name: default mysql client install
           command: |
-            sudo apt update
             sudo apt-get install default-mysql-client
       - run:
           name: bundle install
