@@ -293,7 +293,7 @@
   width: 100%
   font-size: 20px
   color: white
-  background-color: $gray-dark
+  background-color: white
   border: 2px solid $gray-dark
   border-radius: 50%
   outline: none
@@ -301,6 +301,9 @@
   &:hover, &:active, &:focus
     color: white
     text-decoration: none
+  svg
+    padding: 11px 0 0 12px
+    fill: $gray-dark
   i
     display: block
     line-height: 44px
@@ -308,6 +311,8 @@
   &.stocked
     background-color: $gray-dark
     color: white
+    svg
+      fill: white
 
 .article__item-stock-check
   font-size: 12px
