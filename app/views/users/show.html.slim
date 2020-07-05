@@ -1,5 +1,9 @@
 .row.user-row
   .col-md-3.col-sm-3.col-xs-12
+    .dropdown.user__profile-menu
+      i.fa.fa-ellipsis-h.fa-lg.dropdown-toggle#dropdown1 tabindex="0" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+      .dropdown-menu aria-labelledby="dropdown1"
+        = link_to 'LGTMした記事', show_user_path(@user, liked: :liked), class: "dropdown-item"
     .user__profile-image
       = image_tag @user.profile_image.thumb.url
     h3= @user.username
