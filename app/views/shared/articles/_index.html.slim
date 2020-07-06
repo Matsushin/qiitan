@@ -10,7 +10,7 @@
         .article__items-status
           a.lgtm-status
             a.lgtm-mark LGTM
-            a.lgtm-count #{article.likes.count}
+            a.lgtm-count= article.likes.count
           - if !liked_articles_request?
             a.time-status #{article.created_at.to_date}
   = paginate articles
