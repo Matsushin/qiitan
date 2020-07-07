@@ -8,11 +8,14 @@
         .article__items-title
           = link_to article.title, article_path(article)
         .article__items-status
+          - if user_name
+            a.post-user-by by
+            a.post-user= link_to article.user.username, user_path(article.user)
           a.lgtm-status
             a.lgtm-mark LGTM
             a.lgtm-count= article.likes.count
           - if !liked_articles_request?
-            a.time-status #{article.created_at.to_date}
+            a.time-status= article.created_at.to_date
   = paginate articles
 - else
   p 記事が1つもありません。
