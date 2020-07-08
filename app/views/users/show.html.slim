@@ -23,4 +23,4 @@
     div class="title #{liked_articles_request? ? 'active' : 'hidden'}"
       i.fas.fa-square-full
       a LGTMした記事
-    = render 'shared/articles/index', articles: @articles, user_name: false
+    = render 'shared/articles/index', articles: @articles, hide_username: true
