@@ -3,7 +3,7 @@
     h2.page__title
       = icon('far', 'file-alt')
       | すべての投稿
-    = render 'shared/articles/index', articles: @articles
+    = render 'shared/articles/index', articles: @articles, user_name: true
   .col-md-4
     .row.d-flex.home__user-container
       .col-md-2

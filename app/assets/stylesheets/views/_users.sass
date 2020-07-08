@@ -1,6 +1,17 @@
 .user-row
   margin-top: 20px
 
+.user__profile-menu
+  position:  relative
+  i
+    float: right
+    color: gray
+  .dropdown-menu
+    position: absolute
+    left: 110px
+    top: 15px
+    padding: 10px
+
 .user__profile-image
   margin-bottom: 20px
   img
@@ -10,6 +21,7 @@
     border-radius: 6px
     overflow: hidden
     width: 100%
+    border-radius: 50%
 
 .user__activity-stats
   margin: 0 0 10px
@@ -27,6 +39,17 @@
 .user__activity-stat_count
   font-size: 2em
   font-weight: 700
+
+.title
+  margin-top: 20px
+  font-size: 18px
+  font-weight: bold
+  .fa-square-full
+    color: $base-color
+  a
+    pointer-events: none
+    color: black
+    padding-left: 10px
 
 .registrations.edit, .registrations.update
   main.main__navigation

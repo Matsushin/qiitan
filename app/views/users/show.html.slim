@@ -1,5 +1,9 @@
 .row.user-row
   .col-md-3.col-sm-3.col-xs-12
+    .dropdown.user__profile-menu
+      i.fa.fa-ellipsis-h.fa-lg.dropdown-toggle#dropdown1 tabindex='0' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'
+      .dropdown-menu aria-labelledby='dropdown1'
+        = link_to 'LGTMした記事', show_user_path(@user, liked: :liked), class: 'dropdown-item'
     .user__profile-image
       = image_tag @user.profile_image.thumb.url
     h3= @user.username
@@ -13,9 +17,10 @@
         span.user__activity-stat_count= Like.where(article: @user.articles).count
         br
         | Contributtion
-    ul.nav.nav-tabs
-      li.nav-item  class= "#{liked_articles_request? ? '' : 'active'}"
-        = link_to '最近の投稿', user_path(current_user)
-      li.nav-item  class= "#{liked_articles_request? ? 'active' : ''}"
-        = link_to 'いいねした投稿', show_user_path(@user, liked: :liked)
-    = render 'shared/articles/index', articles: @articles
+    div class="title #{liked_articles_request? ? 'hidden' : 'active'}"
+      i.fas.fa-square-full
+      a 全ての記事
+    div class="title #{liked_articles_request? ? 'active' : 'hidden'}"
+      i.fas.fa-square-full
+      a LGTMした記事
+    = render 'shared/articles/index', articles: @articles, user_name: false

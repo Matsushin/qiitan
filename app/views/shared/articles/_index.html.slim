@@ -1,23 +1,21 @@
 - if articles.present?
   - articles.each do |article|
     .media.article__items-container
-      = link_to user_path(article.user), class: 'media__image thumb thumb-m' do
-        = image_tag article.user.profile_image.thumb.url
+      - if liked_articles_request?
+        = link_to user_path(article.user), class: 'media__image thumb thumb-m' do
+          = image_tag article.user.profile_image.thumb.url
       .article__items-body
-        .article__items-info
-          = link_to article.user.username, user_path(article.user)
-          | が
-          = l article.created_at.to_date
-          | に投稿
         .article__items-title
           = link_to article.title, article_path(article)
-      .article__items-status
-        - if article.likes.exists?
-          = icon 'fas', 'thumbs-up', article.likes.count, class: "#{current_user.likes.exists?(article: article) ? 'artilce__items-status-liked' : ''}"
-        - if article.comments.exists?
-          .div
-            = icon 'far', 'comment'
-            = link_to article.comments.count, article_path(article), class: "article__items-comment"
+        .article__items-status
+          - if user_name
+            a.post-user-by by
+            a.post-user= link_to article.user.username, user_path(article.user)
+          a.lgtm-status
+            a.lgtm-mark LGTM
+            a.lgtm-count= article.likes.count
+          - if !liked_articles_request?
+            a.time-status= article.created_at.to_date
   = paginate articles
 - else
   p 記事が1つもありません。

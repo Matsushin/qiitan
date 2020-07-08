@@ -2,8 +2,11 @@
   - if stock&.persisted?
     = link_to article_stock_path(article, stock), method: :delete, remote: true, class: 'article__item-stock-btn stocked' do
       .fa-stack
-        = icon('fas', 'folder', class: 'fa-stack-1x')
-        = icon('fas', 'check', class: 'fa-stack-1x article__item-stock-check')
+        <svg width='33' height='33' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 359.16 339' class='StockIcon__Stock-cq5opj-0 StockIcon__Stocked-cq5opj-1 kddCZq'>
+          <path d='M359.16 251.41V0H0v251.41c91.24 116.79 267.92 116.79 359.16 0zm-53.22-131.26L187.73 253a23 23 0 01-16.23 7.69h-.94a23 23 0 01-15.87-6.35L54.53 158.86a23 23 0 0131.73-33.27l82.94 79.11L271.59 89.6a23 23 0 1134.35 30.55z'></path>
+        </svg>
   - else
     = link_to article_stocks_path(article), method: :post, remote: true, class: 'article__item-stock-btn' do
-      = icon('fas', 'folder-open')
+      <svg width='33' height='33' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 353.02 398' class='StockIcon__Stock-cq5opj-0 jnleGS'>
+        <path d='M176.72 398c-67.52 0-130.16-29-171.84-79.69l-4.46-5.42V78.05H353v234.84l-4.45 5.42C306.88 369 244.24 398 176.72 398zm-137.2-99.34c34.17 38.37 83.78 60.25 137.2 60.25s103-21.88 137.21-60.25V117.14H39.52zM0 0h351.12v40.94H0z'></path>
+      </svg>
