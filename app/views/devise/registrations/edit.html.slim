@@ -1,29 +1,51 @@
-h2= t('.title')
-= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, class: 'form-section' }) do |f|
-  = f.error_notification
-  .form-group
-    = f.input :username, autofocus: true, input_html: { class: 'fit-input' }
-    = f.input :email, autocomplete: 'email', input_html: { class: 'fit-input long' }
-    = f.input :profile_image do
-      - if f.object.profile_image.present?
-        .profile_image
-          = image_tag f.object.profile_image.thumb.url
-      = f.input_field :profile_image, as: :file, accept: 'image/*'
-      = f.hidden_field :profile_image_cache
-    = f.input :password, autocomplete: 'new-password', input_html: { class: 'fit-input' }, hint: t('.leave_blank_if_you_don_t_want_to_change_it')
-    = f.input :password_confirmation, autocomplete: 'new-password', input_html: { class: 'fit-input' }
-    = f.input :current_password, autocomplete: 'current-password', input_html: { class: 'fit-input' }, required: true,
-                                 hint: t('.we_need_your_current_password_to_confirm_your_changes')
-  .form-group
-    = f.submit t('.update'), class: 'btn btn-primary'
-    = link_to 'キャンセル', :back, class: 'btn btn-default user__cancel-btn'
 
-.form-section
-  hr
-  p
-    = icon 'fas', 'trash-alt'
-    b  アカウント削除
-  p.text-muted 一度アカウントを削除すると、二度と元に戻せません。十分ご注意ください。
-  = button_to "アカウントを削除する", users_confirm_destroy_path, method: :get, class: 'btn btn-danger'
+  .row
+    .menu.col-xs-2
+      ul.list-unstyled
+        li
+          a.active data-toggle="tab" href="#account"  プロフィール
+        li
+          a data-toggle="tab" href="#password"  パスワード
+
+    .col-xs-10
+      .tab-content
+        #account.tab-pane.active
+          h2= t('.title')
+          = simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, class: 'form-section' }) do |f|
+            = f.error_notification
+            .form-group
+              = f.input :username, autofocus: true, input_html: { class: 'fit-input' }
+              = f.input :email, autocomplete: 'email', input_html: { class: 'fit-input long' }
+              = f.input :profile_image do
+                - if f.object.profile_image.present?
+                  .profile_image
+                    = image_tag f.object.profile_image.thumb.url
+                = f.input_field :profile_image, as: :file, accept: 'image/*'
+                = f.hidden_field :profile_image_cache
+              = f.input :current_password, autocomplete: 'current-password', input_html: { class: 'fit-input' }, required: true,
+                                          hint: t('.we_need_your_current_password_to_confirm_your_changes')
+            .form-group
+              = f.submit t('.update'), class: 'btn btn-primary'
+              = link_to 'キャンセル', :back, class: 'btn btn-default user__cancel-btn'
+
+          .form-section
+            hr
+            p
+              = icon 'fas', 'trash-alt'
+              b  アカウント削除
+            p.text-muted 一度アカウントを削除すると、二度と元に戻せません。十分ご注意ください。
+            = button_to "アカウントを削除する", users_confirm_destroy_path, method: :get, class: 'btn btn-danger'
 
 
+        #password.tab-pane
+          h2 パスワード編集
+          = simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, class: 'form-section' }) do |f|
+            = f.error_notification
+            .form-group
+              = f.input :password, autocomplete: 'new-password', input_html: { class: 'fit-input' }, hint: t('.leave_blank_if_you_don_t_want_to_change_it')
+              = f.input :password_confirmation, autocomplete: 'new-password', input_html: { class: 'fit-input' }
+              = f.input :current_password, autocomplete: 'current-password', input_html: { class: 'fit-input' }, required: true,
+                                          hint: t('.we_need_your_current_password_to_confirm_your_changes')
+            .form-group
+              = f.submit t('.update'), class: 'btn btn-primary'
+              = link_to 'キャンセル', :back, class: 'btn btn-default user__cancel-btn'

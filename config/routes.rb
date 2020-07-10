@@ -17,6 +17,7 @@ Rails.application.routes.draw do
     get 'users/confirm_destroy' => 'users#confirm_destroy'
     delete 'users/complete_destroy' => 'users#complete_destroy'
     get 'users/completed_destroy' => 'users#completed_destroy'
+    # get 'users/edit_password' => 'devise/registrations#edit_password'
   end
 
   resources :users, only: %i[show] do

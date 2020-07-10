@@ -3,6 +3,8 @@ class UsersController < ApplicationController
   before_action :set_user, only: %i[show]
   before_action :authenticate_user!, except: %i[completed_destroy]
 
+  # def edit_password;end
+
   def show
     @articles = if liked_request?
                   Article.where(id: @user.likes.select(:article_id)).includes(:user).order(created_at: :desc).page(params[:page])
