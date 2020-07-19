@@ -16,7 +16,9 @@ feature 'Article Like' do
       expect(page).to have_selector ".fa-check"
 
       visit root_path
-      expect(page).to have_selector ".fa-thumbs-up"
+      within all('.article__items-status')[0] do
+        expect(page).to have_content 1
+      end
     end
 
     scenario '自分が作成した記事にいいねできない', js: true do
@@ -25,10 +27,12 @@ feature 'Article Like' do
       expect(page).to have_css ".article__like-not-allowed"
 
       find(".article__item-like-btn").click
-      expect(page).to have_selector ".fa-thumbs-up"
+      expect(page).to have_selector ".article__item-like-lgtm"
 
       visit root_path
-      expect(page).not_to have_selector ".fa-thumbs-up"
+      within all('.article__items-status')[0] do
+        expect(page).to have_content 0
+      end
     end
   end
 end

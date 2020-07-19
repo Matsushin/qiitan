@@ -168,6 +168,8 @@
   color: #444
   border-bottom: 1px solid $gray
   display: flex
+  img
+    border-radius: 50%
 
 .article__items-body
   flex: 1 1 0%
@@ -180,14 +182,27 @@
 .article__items-title
   display: block
   margin-bottom: .5em
-  font-size: 1.3em
+  font-size: 1.5em
+  font-weight: bold
+  color: gray
   a
-    text-decoration: none
+    color: gray
 
 .article__items-status
   font-size: 1.2em
-  i
-    color: $gray
+  .lgtm-mark
+    color: $base-color
+    font-weight: bold
+    margin-left: 5px
+  .lgtm-count
+    color: black
+    margin-left: 5px
+  .post-user-by
+    color: black
+    margin-right: 5px
+  .time-status
+    color: gray
+    float: right
 
 .artilce__items-status-liked
   color: $base-color !important
@@ -262,10 +277,14 @@
   &:hover, &:active, &:focus
     color: $base-color
     text-decoration: none
+  svg
+    padding-top: 11px
+    fill: $base-color
   i
-    display: block
-    line-height: 44px
-    text-align: center
+  display: block
+  line-height: 44px
+  text-align: center
+  
   &.liked
     background-color: $base-color
     color: white
@@ -289,7 +308,7 @@
   width: 100%
   font-size: 20px
   color: white
-  background-color: $gray-dark
+  background-color: white
   border: 2px solid $gray-dark
   border-radius: 50%
   outline: none
@@ -297,6 +316,9 @@
   &:hover, &:active, &:focus
     color: white
     text-decoration: none
+  svg
+    padding: 12px 0 0 12px
+    fill: $gray-dark
   i
     display: block
     line-height: 44px
@@ -304,11 +326,8 @@
   &.stocked
     background-color: $gray-dark
     color: white
-
-.article__item-stock-check
-  font-size: 12px
-  color: $base-color
-  top: 2px
+    svg
+      fill: white
 
 .article__item-stock-search
   margin-top: 10px
@@ -347,7 +366,7 @@
 .article__item-main-header-author-img
   display: flex
   overflow: hidden
-  border-radius: .2em
+  border-radius: 50%
   width: 32px
   height: 32px
   margin-right: 8px
@@ -513,7 +532,7 @@
   margin-bottom: 10px
 
 .comment__icon
-  border-radius: 3px
+  border-radius: 50%
   display: inline-block
   line-height: 1
   overflow: hidden
@@ -543,4 +562,4 @@
     color: #aaa
 .article__item-stock-subtitle
   margin-bottom: 0px 
-  color: #BBBBBB 
+  color: #BBBBBB
