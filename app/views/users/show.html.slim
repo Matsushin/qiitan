@@ -1,5 +1,5 @@
 .row.user-row
-  .col-md-3.col-sm-3.col-xs-12
+  .col-md-3.col-sm-3.col-xs-12.user__profile
     .dropdown.user__profile-menu
       i.fa.fa-ellipsis-h.fa-lg.dropdown-toggle#dropdown1 tabindex='0' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'
       .dropdown-menu aria-labelledby='dropdown1'
@@ -19,10 +19,11 @@
     = link_to 'プロフィールを編集する', edit_user_registration_path, class: 'user__profile-edit btn btn-default'
       
   .col-md-9.col-sm-9.col-xs-12
-    div class="title #{liked_articles_request? ? 'hidden' : 'active'}"
-      i.fas.fa-square-full
-      a 全ての記事
-    div class="title #{liked_articles_request? ? 'active' : 'hidden'}"
-      i.fas.fa-square-full
-      a LGTMした記事
-    = render 'shared/articles/index', articles: @articles, hide_username: true
+    .user__article
+      div class="title #{liked_articles_request? ? 'hidden' : 'active'}"
+        i.fas.fa-square-full
+        a 全ての記事
+      div class="title #{liked_articles_request? ? 'active' : 'hidden'}"
+        i.fas.fa-square-full
+        a LGTMした記事
+      = render 'shared/articles/index', articles: @articles, hide_username: true
