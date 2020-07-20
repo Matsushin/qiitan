@@ -16,7 +16,7 @@
             a.lgtm-mark LGTM
             a.lgtm-count= article.likes.count
           - if !liked_articles_request?
-            a.time-status= I18n.localize(article.created_at.to_date)
+            a.time-status= I18n.l(article.created_at.to_date)
   = paginate articles
 - else
   p 記事が1つもありません。
