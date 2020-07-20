@@ -1,26 +1,29 @@
 .row.user-row
-  .col-md-3.col-sm-3.col-xs-12
+  .col-md-3.col-sm-3.col-xs-12.user__profile
     .dropdown.user__profile-menu
       i.fa.fa-ellipsis-h.fa-lg.dropdown-toggle#dropdown1 tabindex='0' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'
       .dropdown-menu aria-labelledby='dropdown1'
         = link_to 'LGTMした記事', show_user_path(@user, liked: :liked), class: 'dropdown-item'
     .user__profile-image
       = image_tag @user.profile_image.thumb.url
-    h3= @user.username
-  .col-md-9.col-sm-9.col-xs-12
+    h3.user-name= @user.username
     .row.user__activity-stats
       .col-xs-6.user__activity-stat
-        span.user__activity-stat_count= @user.articles.count
+        span.user__activity-stat-count= @user.articles.count
         br
-        | Items
+        span.user__activity-stat-title 投稿
       .col-xs-6.user__activity-stat
-        span.user__activity-stat_count= Like.where(article: @user.articles).count
+        span.user__activity-stat-count= Like.where(article: @user.articles).count
         br
-        | Contributtion
-    div class="title #{liked_articles_request? ? 'hidden' : 'active'}"
-      i.fas.fa-square-full
-      a 全ての記事
-    div class="title #{liked_articles_request? ? 'active' : 'hidden'}"
-      i.fas.fa-square-full
-      a LGTMした記事
-    = render 'shared/articles/index', articles: @articles, hide_username: true
+        span.user__activity-stat-title Contributtion
+    = link_to 'プロフィールを編集する', edit_user_registration_path, class: 'user__profile-edit btn btn-default'
+      
+  .col-md-9.col-sm-9.col-xs-12
+    .user__article
+      div class="title #{liked_articles_request? ? 'hidden' : 'active'}"
+        i.fas.fa-square-full
+        a 全ての記事
+      div class="title #{liked_articles_request? ? 'active' : 'hidden'}"
+        i.fas.fa-square-full
+        a LGTMした記事
+      = render 'shared/articles/index', articles: @articles, hide_username: true
