@@ -51,5 +51,3 @@ Ctrl+C
 ```
 $ docker-compose run web bundle exec rails db:migrate
 ```
-
-### テスト
